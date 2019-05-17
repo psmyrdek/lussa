@@ -1,0 +1,26 @@
+.stage {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-image: url('../../assets/images/wood.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-stage {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+app-suppliers-container {
+    flex-grow: 1;
+}
+
+app-field-container {
+    flex-grow: 2;
+}
+
+app-players-container {
+    flex-grow: 1;
+}
