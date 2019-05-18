@@ -8,7 +8,6 @@ import { FieldContainerComponent } from './field/field-container/field-container
 import { StageComponent } from './stage/stage.component';
 import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { ColumnsComponent } from './field/columns/columns.component';
-import { MarkerFieldComponent } from './field/marker-field/marker-field.component';
 import { ColumnComponent } from './field/column/column.component';
 import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.component';
 
@@ -21,7 +20,6 @@ import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.c
     StageComponent,
     SupplierComponent,
     ColumnsComponent,
-    MarkerFieldComponent,
     ColumnComponent,
     BrokenStonesComponent
   ],

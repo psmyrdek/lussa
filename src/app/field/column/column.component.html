@@ -1,10 +1,18 @@
 <div class="column">
-  <div *ngFor="let field of variant.fields" [ngClass]="['column-field', field.color, field.isFilled ? 'column-field--filled' : '']"></div>
-  <div class="column-field">
-
+  <div class="fields-group" [ngClass]="{'fields-group--hidden': column.isColumnCompleted, 'fields-group--disabled': !column.isColumnCompleted && column.isDisabled}">
+    <div *ngFor="let field of variant.fields"
+      [ngClass]="['column-field', field.color, field.isFilled ? 'column-field--filled' : '']"></div>
   </div>
-  <div class="column-field">
-
+  <div class="fields-group">
+    <div class="column-field column-marker" [ngClass]="{'column-marker--completed' : column.isVariantCompleted}">
+      <i class="far fa-caret-square-right"></i>
+    </div>
+    <div class="column-field column-marker" [ngClass]="{'column-marker--completed' : column.isColumnCompleted}">
+      <i class="fas fa-check-square"></i>
+    </div>
+    <div class="column-value">{{ column.value }}</div>
   </div>
-  <div class="column-value">{{ column.value }}</div>
+  <div class="column-indicator">
+    <div class="indicator"></div>
+  </div>
 </div>
