@@ -10,6 +10,7 @@ import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { ColumnsComponent } from './field/columns/columns.component';
 import { MarkerFieldComponent } from './field/marker-field/marker-field.component';
 import { ColumnComponent } from './field/column/column.component';
+import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ColumnComponent } from './field/column/column.component';
     SupplierComponent,
     ColumnsComponent,
     MarkerFieldComponent,
-    ColumnComponent
+    ColumnComponent,
+    BrokenStonesComponent
   ],
   imports: [
     BrowserModule
