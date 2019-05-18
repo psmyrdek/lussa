@@ -7,6 +7,9 @@ import { SuppliersContainerComponent } from './suppliers/suppliers-container/sup
 import { FieldContainerComponent } from './field/field-container/field-container.component';
 import { StageComponent } from './stage/stage.component';
 import { SupplierComponent } from './suppliers/supplier/supplier.component';
+import { ColumnsComponent } from './field/columns/columns.component';
+import { MarkerFieldComponent } from './field/marker-field/marker-field.component';
+import { ColumnComponent } from './field/column/column.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { SupplierComponent } from './suppliers/supplier/supplier.component';
     SuppliersContainerComponent,
     FieldContainerComponent,
     StageComponent,
-    SupplierComponent
+    SupplierComponent,
+    ColumnsComponent,
+    MarkerFieldComponent,
+    ColumnComponent
   ],
   imports: [
     BrowserModule

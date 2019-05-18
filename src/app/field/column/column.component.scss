@@ -1,0 +1,85 @@
+@import "../../styles/stone-colors.map.scss";
+
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.column-field {
+    border: none;
+    $stone-size: 40px;
+    width: $stone-size;
+    height: $stone-size;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 7px;
+    border: 2px dashed;
+}
+
+.column-field--filled {
+    background-image: url('../../../assets/images/tile-gradient.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.column-field.color-white {
+    background-color: lighten(map-get($stone-colors, "white"), 20%);
+    border-color: map-get($stone-colors, "white");
+}
+
+.column-field.color-yellow {
+    background-color: lighten(map-get($stone-colors, "yellow"), 30%);
+    border-color: map-get($stone-colors, "yellow");
+}
+
+.column-field.color-cyan {
+    background-color: lighten(map-get($stone-colors, "cyan"), 30%);
+    border-color: map-get($stone-colors, "cyan");
+}
+
+.column-field.color-magenta {
+    background-color: lighten(map-get($stone-colors, "magenta"), 50%);
+    border-color: map-get($stone-colors, "magenta");
+}
+
+.column-field.color-orange {
+    background-color: lighten(map-get($stone-colors, "orange"), 40%);
+    border-color: map-get($stone-colors, "orange");
+}
+
+.column-field--filled.color-white {
+    background-color: map-get($stone-colors, "white");
+    border-left: 2px solid darken(map-get($stone-colors, "white"), 10%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "white"), 30%);
+    box-shadow: -4px 4px 2px rgba(162, 162, 162, 0.42);
+}
+
+.column-field--filled.color-yellow {
+    background-color: map-get($stone-colors, "yellow");
+    border-left: 2px solid darken(map-get($stone-colors, "yellow"), 10%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "yellow"), 30%);
+    box-shadow: -4px 4px 2px rgba(173, 158, 51, 0.42);
+}
+
+.column-field--filled.color-cyan {
+    background-color: map-get($stone-colors, "cyan");
+    border-left: 2px solid darken(map-get($stone-colors, "cyan"), 10%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "cyan"), 30%);
+    box-shadow: -4px 4px 2px rgba(40, 123, 132, 0.35);
+}
+
+.column-field--filled.color-magenta {
+    background-color: map-get($stone-colors, "magenta");
+    border-left: 2px solid darken(map-get($stone-colors, "magenta"), 10%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "magenta"), 30%);
+    box-shadow: -4px 4px 2px rgba(117, 24, 71, 0.33);
+}
+
+.column-field--filled.color-orange {
+    background-color: map-get($stone-colors, "orange");
+    border-left: 2px solid darken(map-get($stone-colors, "orange"), 10%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
+    box-shadow: -4px 4px 2px rgba(160, 81, 29, 0.33);
+}

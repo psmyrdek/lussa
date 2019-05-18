@@ -1,8 +1,9 @@
 import { ColumnVariant } from './ColumnVariant';
+import { ColumnVariantEnum } from './ColumnVariantEnum';
 
 export interface Column {
 
-    activeVariant: ColumnVariant;
+    activeVariant: ColumnVariantEnum;
 
     variantA: ColumnVariant;
     variantB: ColumnVariant;
