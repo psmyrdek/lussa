@@ -10,6 +10,8 @@ import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { ColumnsComponent } from './field/columns/columns.component';
 import { ColumnComponent } from './field/column/column.component';
 import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './_app-state/app.reducer';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.c
     BrokenStonesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    StoreModule.forRoot({app: appReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]
