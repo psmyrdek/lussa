@@ -12,6 +12,7 @@ import { ColumnComponent } from './field/column/column.component';
 import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.component';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './_app-state/app.reducer';
+import { PlayerHandComponent } from './field/player-hand/player-hand.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { appReducer } from './_app-state/app.reducer';
     SupplierComponent,
     ColumnsComponent,
     ColumnComponent,
-    BrokenStonesComponent
+    BrokenStonesComponent,
+    PlayerHandComponent
   ],
   imports: [
     BrowserModule,

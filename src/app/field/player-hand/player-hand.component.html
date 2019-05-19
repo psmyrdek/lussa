@@ -1,0 +1,6 @@
+<div class="player-hand">
+    <div class="player-hand-container">
+        <i class="player-hand-icon far fa-hand-paper" *ngIf="colors.length"></i>
+        <div *ngFor="let color of colors" [ngClass]="'stone ' + color"></div>
+    </div>
+</div>

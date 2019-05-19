@@ -1,15 +1,9 @@
 import { Color } from 'src/app/_models/ColorEnum';
-
-function getRandomInt(min, max) {
-    let minInt = Math.ceil(min);
-    let maxInt = Math.floor(max);
-    return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
-}
+import { getRandomInt } from './random-int';
 
 export function getForSupplier(colors: Color[]): [Color[], Color[]] {
 
     const maxToPick = colors.length > 4 ? 4 : colors.length
-
     const randomIndexes = [];
 
     while (randomIndexes.length < maxToPick) {

@@ -1,14 +1,18 @@
 @import "../../styles/stone-colors.map.scss";
 
-.broken-stones {
+.player-hand {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 20px 0;
+    margin-bottom: 10px;
+    padding: 10px 0;
 }
 
-.broken-stones-container {
+.player-hand-container {
     width: 1000px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .stone {
@@ -23,7 +27,6 @@
     display: inline-block;
     margin: 5px;
     box-shadow: -4px 4px 2px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
 }
 
 .color-white {
@@ -54,4 +57,10 @@
     background-color: map-get($stone-colors, "orange");
     border-left: 2px solid darken(map-get($stone-colors, "orange"), 20%);
     border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
+}
+
+.player-hand-icon {
+    color: white;
+    font-size: 26px;
+    margin-right: 20px;
 }
