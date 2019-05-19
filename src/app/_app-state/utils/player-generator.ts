@@ -182,6 +182,8 @@ function generateColumns(): Column[] {
 
     return values.map((columnValue, index) => ({
 
+        id: index,
+
         isDisabled: false,
 
         activeVariant: getRandomInt(0, 1) === 0 ? ColumnVariantEnum.A : ColumnVariantEnum.B,

@@ -4,9 +4,11 @@ import { AppActionTypes, AddPlayerAction } from './actions/app.actions';
 import { getForSupplier } from './utils/colors';
 import { TurnActionTypes } from './actions/turn.actions';
 import { AppState, defaultAppState } from './state';
-import { PlayerActionTypes, TakeFromSupplierAction } from './actions/player.actions';
+import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction } from './actions/player.actions';
 import { Color } from '../_models/ColorEnum';
 import { generatePlayer } from './utils/player-generator';
+import { Column } from '../_models/Column';
+import { ColumnVariantEnum } from '../_models/ColumnVariantEnum';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -69,6 +71,37 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 ...state,
                 suppliers: filteredSuppliers,
                 playerTurnColors
+            }
+
+        }
+        case PlayerActionTypes.FillColumn: {
+
+            const actionPayload = (action as FillColumnAction).payload;
+            const colorsInHand = state.playerTurnColors;
+            const columnId = actionPayload.columnId;
+
+            const playerIndex = state.players.findIndex(p => p.id === state.playerId)
+            const player = state.players[playerIndex]
+            
+            const column: Column = player.columns.find(c => c.id === columnId)
+            const variant = column.activeVariant === ColumnVariantEnum.A
+                ? column.variantA : column.variantB;
+
+            const toBreak: Color[] = [];
+
+            colorsInHand.forEach(color => {
+                const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
+                if (toFill) {
+                    toFill.isFilled = true;
+                } else {
+                    toBreak.push(color)
+                }
+            })
+
+            state.playerTurnColors = [];
+
+            return {
+                ...state
             }
 
         }
