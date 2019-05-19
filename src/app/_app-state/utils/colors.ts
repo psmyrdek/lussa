@@ -6,38 +6,21 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 }
 
-export function getRandomColors(colors: Color[]): Color[] {
-    const randomIndexes = [];
-    const randomColors = [];
+export function getForSupplier(colors: Color[]): [Color[], Color[]] {
 
     const maxToPick = colors.length > 4 ? 4 : colors.length
+
+    const randomIndexes = [];
 
     while (randomIndexes.length < maxToPick) {
         const tryIndex = getRandomInt(0, colors.length - 1);
         if (!randomIndexes.includes(tryIndex)) {
             randomIndexes.push(tryIndex);
-            randomColors.push(colors[tryIndex]);
         }
     }
 
-    return randomColors;
-}
-
-export function removePickedColors(availableColors: Color[], colorsToRemove: Color[]) {
-
-    const alreadyRemoved = [];
-
-    return availableColors.filter(color => {
-        if (colorsToRemove.includes(color)) {
-            if (alreadyRemoved.includes(color)) {
-                return true;
-            } else {
-                alreadyRemoved.push(color);
-                return false;
-            }
-        } else {
-            return true;
-        }
-    })
-
+    const toGet = randomIndexes.map(index => colors[index])
+    const toKeep = colors.filter((color, index) => { return !randomIndexes.includes(index) })
+    
+    return [toGet, toKeep];
 }
