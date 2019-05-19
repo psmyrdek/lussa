@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Supplier } from 'src/app/_models/Supplier';
 import { Color } from 'src/app/_models/ColorEnum';
+import { Store } from '@ngrx/store';
+import { TakeFromSupplierAction } from 'src/app/_app-state/actions/player.actions';
+import { AppState } from 'src/app/_app-state/state';
 
 @Component({
   selector: 'app-supplier',
@@ -11,13 +14,13 @@ export class SupplierComponent implements OnInit {
 
   @Input() supplier: Supplier;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
 
   takeAll(colorToTake: Color) {
-    this.supplier.colors = this.supplier.colors.filter(x => x != colorToTake)
+    this.store.dispatch(new TakeFromSupplierAction({color: colorToTake, supplierId: this.supplier.id}))
   }
 
 }

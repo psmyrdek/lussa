@@ -1,52 +1,25 @@
 import { Action } from '@ngrx/store';
-import { Color } from '../_models/ColorEnum';
 import { Supplier } from '../_models/Supplier';
-import { AppActionTypes, TurnActionTypes } from './app.actions';
+import { AppActionTypes } from './actions/app.actions';
 import { getForSupplier } from './utils/colors';
+import { TurnActionTypes } from './actions/turn.actions';
+import { AppState, defaultAppState } from './state';
+import { PlayerActionTypes, TakeFromSupplierAction } from './actions/player.actions';
+import { Color } from '../_models/ColorEnum';
 
-export interface AppState {
-    suppliers: Supplier[];
-    colors: Color[];
-}
-
-const defaultState: AppState = {
-    suppliers: [],
-    colors: [
-        Color.Orange,
-        Color.Orange,
-        Color.Orange,
-
-        Color.Cyan,
-        Color.Cyan,
-        Color.Cyan,
-
-        Color.Magenta,
-        Color.Magenta,
-        Color.Magenta,
-
-        Color.White,
-        Color.White,
-        Color.White,
-
-        Color.Yellow,
-        Color.Yellow,
-        Color.Yellow
-    ]
-}
-
-export function appReducer(state: AppState = defaultState, action: Action) {
+export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
         case AppActionTypes.InitSuppliers: {
             return {
                 ...state,
                 suppliers: [
-                    { colors: [] },
-                    { colors: [] },
-                    { colors: [] },
-                    { colors: [] },
-                    { colors: [] },
-                    { colors: [] },
-                    { colors: [] }
+                    { id: 0, colors: [] },
+                    { id: 1, colors: [] },
+                    { id: 2, colors: [] },
+                    { id: 3, colors: [] },
+                    { id: 4, colors: [] },
+                    { id: 5, colors: [] },
+                    { id: 6, colors: [] }
                 ]
             }
         }
@@ -55,10 +28,10 @@ export function appReducer(state: AppState = defaultState, action: Action) {
             let availableColors = state.colors
             let toGet, toKeep;
 
-            const filledSuppliers: Supplier[] = state.suppliers.map(() => {
+            const filledSuppliers: Supplier[] = state.suppliers.map(supplier => {
                 ([toGet, toKeep] = getForSupplier(availableColors));
                 availableColors = toKeep
-                return { colors: toGet }
+                return { ...supplier, colors: toGet }
             })
 
             return {
@@ -66,6 +39,27 @@ export function appReducer(state: AppState = defaultState, action: Action) {
                 colors: availableColors,
                 suppliers: filledSuppliers
             }
+        }
+        case PlayerActionTypes.TakeFromSupplier: {
+
+            const actionPayload = (action as TakeFromSupplierAction).payload;
+            let playerTurnColors: Color[] = [];
+
+            const filteredSuppliers = state.suppliers.map((supplier) => {
+                if (supplier.id !== actionPayload.supplierId) {
+                    return supplier;
+                } else {
+                    playerTurnColors = supplier.colors.filter(c => c === actionPayload.color)
+                    return { ...supplier, colors: supplier.colors.filter(c => c != actionPayload.color)}
+                }
+            });
+
+            return {
+                ...state,
+                suppliers: filteredSuppliers,
+                playerTurnColors
+            }
+
         }
     }
 }

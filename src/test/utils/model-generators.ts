@@ -28,6 +28,7 @@ export function getRandomVariant(): ColumnVariant {
 
 export function getRandomSupplier(): Supplier {
     return {
+        id: 0,
         colors: [
             Color.White,
             Color.Magenta,
