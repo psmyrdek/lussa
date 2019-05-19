@@ -30,7 +30,7 @@ export class ColumnComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(new FillColumnAction({ columnId: this.column.id }))
+    this.store.dispatch(new FillColumnAction({ columnId: this.column.id, fillJokers: false }))
   }
 
 }
