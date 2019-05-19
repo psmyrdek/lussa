@@ -12,11 +12,6 @@ export function getRandomColors(colors: Color[]): Color[] {
 
     const maxToPick = colors.length > 4 ? 4 : colors.length
 
-    console.log(`
-        available: ${colors.length},
-        max: ${maxToPick}
-    `)
-
     while (randomIndexes.length < maxToPick) {
         const tryIndex = getRandomInt(0, colors.length - 1);
         if (!randomIndexes.includes(tryIndex)) {
@@ -30,10 +25,6 @@ export function getRandomColors(colors: Color[]): Color[] {
 
 export function removePickedColors(availableColors: Color[], colorsToRemove: Color[]) {
 
-    console.log(`
-        toRemove: ${colorsToRemove.length}
-    `)
-    
     const alreadyRemoved = [];
 
     return availableColors.filter(color => {

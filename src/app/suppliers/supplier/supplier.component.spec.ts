@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SupplierComponent } from './supplier.component';
+import { getRandomSupplier } from 'src/test/utils/model-generators';
 
 describe('SupplierComponent', () => {
   let component: SupplierComponent;
@@ -16,6 +17,7 @@ describe('SupplierComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SupplierComponent);
     component = fixture.componentInstance;
+    component.supplier = getRandomSupplier(),
     fixture.detectChanges();
   });
 

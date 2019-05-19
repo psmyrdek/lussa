@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StageComponent } from './stage.component';
+import { SuppliersContainerComponent } from '../suppliers/suppliers-container/suppliers-container.component';
+import { BrokenStonesComponent } from '../suppliers/broken-stones/broken-stones.component';
+import { FieldContainerComponent } from '../field/field-container/field-container.component';
+import { PlayersContainerComponent } from '../players/players-container/players-container.component';
+import { SupplierComponent } from '../suppliers/supplier/supplier.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from '../_app-state/app.reducer';
 
 describe('StageComponent', () => {
   let component: StageComponent;
@@ -8,7 +16,20 @@ describe('StageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StageComponent ]
+      imports: [
+        StoreModule.forRoot({
+          app: appReducer
+        })
+      ],
+      declarations: [
+        StageComponent,
+        SuppliersContainerComponent,
+        BrokenStonesComponent,
+        FieldContainerComponent,
+        SupplierComponent,
+        PlayersContainerComponent
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

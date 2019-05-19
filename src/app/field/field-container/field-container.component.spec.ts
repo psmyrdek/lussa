@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FieldContainerComponent } from './field-container.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('FieldContainerComponent', () => {
   let component: FieldContainerComponent;
@@ -8,7 +9,8 @@ describe('FieldContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FieldContainerComponent ]
+      declarations: [ FieldContainerComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
