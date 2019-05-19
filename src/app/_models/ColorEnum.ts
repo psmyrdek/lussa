@@ -1,4 +1,6 @@
 export enum Color {
+    Joker = 'color-joker',
+    
     White = 'color-white',
     Yellow = 'color-yellow',
     Cyan = 'color-cyan',

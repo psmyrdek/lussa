@@ -9,95 +9,159 @@ const variantPairs: [ColumnVariant, ColumnVariant][] = [
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Orange, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.White, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.White, isFilled: false},
+                { color: Color.Joker, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Joker, isFilled: false},
+                { color: Color.Magenta, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
                 { color: Color.Cyan, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Cyan, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Magenta, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.Magenta, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false},
+                { color: Color.Orange, isFilled: false}
             ]
         },
         {
             fields: [
-                { color: Color.White, isFilled: false}
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false}
             ]
         }
     ],
     [
         {
             fields: [
-                { color: Color.Cyan, isFilled: false}
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false},
+                { color: Color.Yellow, isFilled: false}
             ]
         },
         {
             fields: [
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
+                { color: Color.White, isFilled: false},
                 { color: Color.White, isFilled: false}
             ]
         }
