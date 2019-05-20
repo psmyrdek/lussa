@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { appReducer } from './_app-state/app.reducer';
 import { PlayerHandComponent } from './field/player-hand/player-hand.component';
 import { PlayerActionsComponent } from './field/player-actions/player-actions.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PlayerActionsComponent } from './field/player-actions/player-actions.co
     ColumnComponent,
     BrokenStonesComponent,
     PlayerHandComponent,
-    PlayerActionsComponent
+    PlayerActionsComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
