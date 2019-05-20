@@ -8,6 +8,10 @@
 
 .broken-stones-container {
     width: 1000px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .stone {
@@ -53,4 +57,11 @@
     background-color: map-get($stone-colors, "orange");
     border-left: 2px solid darken(map-get($stone-colors, "orange"), 20%);
     border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
+}
+
+.broken-stones-icon {
+    color: white;
+    font-size: 26px;
+    margin-right: 5px;
+    margin-left: 15px;
 }

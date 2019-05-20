@@ -1,5 +1,6 @@
 <div class="broken-stones">
     <div class="broken-stones-container">
+        <i class="broken-stones-icon fas fa-recycle" *ngIf="brokenColors.length"></i>
         <button *ngFor="let color of brokenColors" [ngClass]="'stone ' + color" (click)="takeAll(color)"></button>
     </div>
 </div>
