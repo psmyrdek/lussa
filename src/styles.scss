@@ -6,6 +6,14 @@ html, body {
     font-family: 'Lato', sans-serif;
 }
 
+html {
+    background-image: url('./assets/images/wood.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 * {
     box-sizing: border-box;
 }
+
+@import "./app/styles/button.scss";

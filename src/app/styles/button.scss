@@ -1,0 +1,18 @@
+.button {
+    border: none;
+    border-radius: 5px;
+    
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.button--warning {
+    background: #d67746;
+    border-bottom: 2px solid #8c4b2b;
+
+    &:hover {
+        background: #e88653;
+    }
+}

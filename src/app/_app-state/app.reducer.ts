@@ -1,14 +1,16 @@
 import { Action } from '@ngrx/store';
 import { Supplier } from '../_models/Supplier';
 import { AppActionTypes, AddPlayerAction } from './actions/app.actions';
-import { getForSupplier } from './utils/colors';
+import { getForSupplier } from './utils/get-for-supplier';
 import { TurnActionTypes } from './actions/turn.actions';
 import { AppState, defaultAppState } from './state';
-import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction } from './actions/player.actions';
+import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction, TakeFromBrokenColorsAction } from './actions/player.actions';
 import { Color } from '../_models/ColorEnum';
 import { generatePlayer } from './utils/player-generator';
 import { Column } from '../_models/Column';
 import { ColumnVariantEnum } from '../_models/ColumnVariantEnum';
+import { getCurrentPlayer } from './utils/get-current-player';
+import { updatePlayer } from './utils/update-player';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -63,7 +65,7 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                     return supplier;
                 } else {
                     playerTurnColors = supplier.colors.filter(c => c === actionPayload.color)
-                    return { ...supplier, colors: supplier.colors.filter(c => c != actionPayload.color)}
+                    return { ...supplier, colors: supplier.colors.filter(c => c != actionPayload.color) }
                 }
             });
 
@@ -80,15 +82,17 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
             const colorsInHand = state.playerTurnColors;
             const columnId = actionPayload.columnId;
 
-            const playerIndex = state.players.findIndex(p => p.id === state.playerId)
-            const player = state.players[playerIndex]
-            
+            const player = getCurrentPlayer(state);
+
             const column: Column = player.columns.find(c => c.id === columnId)
+            if (column.isDisabled || column.isColumnCompleted) {
+                return { ...state };
+            }
+
             const variant = column.activeVariant === ColumnVariantEnum.A
                 ? column.variantA : column.variantB;
 
             const toBreak: Color[] = [];
-
             colorsInHand.forEach(color => {
                 const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
                 if (toFill) {
@@ -96,12 +100,48 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 } else {
                     toBreak.push(color)
                 }
-            })
+            });
 
             state.playerTurnColors = [];
 
+            player.columns = player.columns.map((column, index) => ({
+                ...column,
+                isDisabled: index < columnId
+            }))
+
             return {
-                ...state
+                ...state,
+                brokenColors: [...state.brokenColors, ...toBreak],
+                players: updatePlayer(state, player)
+            }
+
+        }
+        case PlayerActionTypes.SkipTurn: {
+
+            const player = getCurrentPlayer(state);
+
+            player.columns = player.columns.map(column => ({
+                ...column,
+                isDisabled: false
+            }))
+
+            return {
+                ...state,
+                players: updatePlayer(state, player)
+            }
+
+        }
+        case PlayerActionTypes.TakeFromBrokenColors: {
+
+            const actionPayload = (action as TakeFromBrokenColorsAction).payload;
+
+            const playerTurnColors = state.brokenColors.filter(c => c === actionPayload.color)
+            const filteredBrokenColors = state.brokenColors.filter(c => c !== actionPayload.color)
+
+            return {
+                ...state,
+                brokenColors: filteredBrokenColors,
+                playerTurnColors
             }
 
         }

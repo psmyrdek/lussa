@@ -7,6 +7,7 @@ export interface AppState {
     colors: Color[];
     playerId: string;
     playerTurnColors: Color[];
+    brokenColors: Color[];
     players: Player[];
 }
 
@@ -38,5 +39,6 @@ export const defaultAppState: AppState = {
         Color.White
     ],
     playerTurnColors: [],
+    brokenColors: [],
     players: []
 }

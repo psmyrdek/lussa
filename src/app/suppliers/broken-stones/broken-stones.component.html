@@ -1,5 +1,5 @@
 <div class="broken-stones">
     <div class="broken-stones-container">
-        <button *ngFor="let color of colors" [ngClass]="'stone ' + color" (click)="takeAll(color)"></button>
+        <button *ngFor="let color of brokenColors" [ngClass]="'stone ' + color" (click)="takeAll(color)"></button>
     </div>
 </div>

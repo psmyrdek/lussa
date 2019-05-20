@@ -26,10 +26,6 @@ export class ColumnComponent implements OnInit {
   }
 
   fillColumn() {
-    if (this.column.isDisabled || this.column.isColumnCompleted) {
-      return;
-    }
-
     this.store.dispatch(new FillColumnAction({ columnId: this.column.id, fillJokers: false }))
   }
 

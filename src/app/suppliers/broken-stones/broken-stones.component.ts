@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/_models/ColorEnum';
+import { AppState } from 'src/app/_app-state/state';
+import { Store, select } from '@ngrx/store';
+import { TakeFromBrokenColorsAction } from 'src/app/_app-state/actions/player.actions';
 
 @Component({
   selector: 'app-broken-stones',
   templateUrl: './broken-stones.component.html',
   styleUrls: ['./broken-stones.component.scss']
 })
-export class BrokenStonesComponent implements OnInit {
+export class BrokenStonesComponent {
 
-  colors: Color[] = [
-    Color.Cyan,
-    Color.Cyan,
-    Color.Magenta,
-    Color.White,
-    Color.Yellow,
-    Color.White,
-    Color.Yellow,
-    Color.White,
-    Color.Orange
-  ]
+  brokenColors: Color[] = []
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private store: Store<AppState>) {
+    this.store
+      .pipe(select('app'))
+      .subscribe(
+        (state: AppState) => {
+          this.brokenColors = state.brokenColors
+        }
+      )
   }
 
   takeAll(colorToTake: Color) {
-    this.colors = this.colors.filter(c => c !== colorToTake);
+    this.store.dispatch(new TakeFromBrokenColorsAction({ color: colorToTake }));
   }
 
 }
