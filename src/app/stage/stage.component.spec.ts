@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StageComponent } from './stage.component';
 import { SuppliersContainerComponent } from '../suppliers/suppliers-container/suppliers-container.component';
-import { BrokenStonesComponent } from '../suppliers/broken-stones/broken-stones.component';
+import { RejectedColorsComponent } from '../suppliers/rejected-colors/rejected-colors.component';
 import { FieldContainerComponent } from '../field/field-container/field-container.component';
 import { PlayersContainerComponent } from '../players/players-container/players-container.component';
 import { SupplierComponent } from '../suppliers/supplier/supplier.component';
@@ -24,7 +24,7 @@ describe('StageComponent', () => {
       declarations: [
         StageComponent,
         SuppliersContainerComponent,
-        BrokenStonesComponent,
+        RejectedColorsComponent,
         FieldContainerComponent,
         SupplierComponent,
         PlayersContainerComponent

@@ -9,7 +9,7 @@ import { StageComponent } from './stage/stage.component';
 import { SupplierComponent } from './suppliers/supplier/supplier.component';
 import { ColumnsComponent } from './field/columns/columns.component';
 import { ColumnComponent } from './field/column/column.component';
-import { BrokenStonesComponent } from './suppliers/broken-stones/broken-stones.component';
+import { RejectedColorsComponent } from './suppliers/rejected-colors/rejected-colors.component';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './_app-state/app.reducer';
 import { PlayerHandComponent } from './field/player-hand/player-hand.component';
@@ -26,7 +26,7 @@ import { TopbarComponent } from './topbar/topbar.component';
     SupplierComponent,
     ColumnsComponent,
     ColumnComponent,
-    BrokenStonesComponent,
+    RejectedColorsComponent,
     PlayerHandComponent,
     PlayerActionsComponent,
     TopbarComponent

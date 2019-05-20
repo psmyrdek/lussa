@@ -4,7 +4,7 @@ import { AppActionTypes, AddPlayerAction } from './actions/app.actions';
 import { getForSupplier } from './utils/get-for-supplier';
 import { TurnActionTypes } from './actions/turn.actions';
 import { AppState, defaultAppState } from './state';
-import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction, TakeFromBrokenColorsAction } from './actions/player.actions';
+import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction, TakeFromRejectedColorsAction } from './actions/player.actions';
 import { Color } from '../_models/ColorEnum';
 import { generatePlayer } from './utils/player-generator';
 import { Column } from '../_models/Column';
@@ -59,20 +59,24 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
 
             const actionPayload = (action as TakeFromSupplierAction).payload;
             let playerTurnColors: Color[] = [];
+            let rejectedSupplierColors: Color[] = [];
 
             const filteredSuppliers = state.suppliers.map((supplier) => {
                 if (supplier.id !== actionPayload.supplierId) {
                     return supplier;
                 } else {
                     playerTurnColors = supplier.colors.filter(c => c === actionPayload.color)
-                    return { ...supplier, colors: supplier.colors.filter(c => c != actionPayload.color) }
+                    rejectedSupplierColors = supplier.colors.filter(c => c !== actionPayload.color)
+
+                    return { ...supplier, colors: [] }
                 }
             });
 
             return {
                 ...state,
                 suppliers: filteredSuppliers,
-                playerTurnColors
+                playerTurnColors,
+                rejectedSupplierColors: [...state.rejectedSupplierColors, ...rejectedSupplierColors]
             }
 
         }
@@ -82,13 +86,16 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
             const colorsInHand = state.playerTurnColors;
             const columnId = actionPayload.columnId;
 
+            // Get player
             const player = getCurrentPlayer(state);
 
+            // Block picking disabled column
             const column: Column = player.columns.find(c => c.id === columnId)
             if (column.isDisabled || column.isColumnCompleted) {
                 return { ...state };
             }
 
+            // Update variant and colors to break
             const variant = column.activeVariant === ColumnVariantEnum.A
                 ? column.variantA : column.variantB;
 
@@ -102,8 +109,10 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 }
             });
 
+            // Empty player turn colors
             state.playerTurnColors = [];
 
+            // Block columns to the left from picked
             player.columns = player.columns.map((column, index) => ({
                 ...column,
                 isDisabled: index < columnId
@@ -131,16 +140,18 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
             }
 
         }
-        case PlayerActionTypes.TakeFromBrokenColors: {
+        case PlayerActionTypes.TakeFromRejectedColors: {
 
-            const actionPayload = (action as TakeFromBrokenColorsAction).payload;
+            const actionPayload = (action as TakeFromRejectedColorsAction).payload;
 
-            const playerTurnColors = state.brokenColors.filter(c => c === actionPayload.color)
-            const filteredBrokenColors = state.brokenColors.filter(c => c !== actionPayload.color)
+            const playerTurnColors = state.rejectedSupplierColors.filter(c => c === actionPayload.color)
+            const rejectedSupplierColors = state.rejectedSupplierColors.filter(c => c !== actionPayload.color)
+
+            // Add -1 if first take
 
             return {
                 ...state,
-                brokenColors: filteredBrokenColors,
+                rejectedSupplierColors,
                 playerTurnColors
             }
 

@@ -1,12 +1,12 @@
 @import "../../styles/stone-colors.map.scss";
 
-.broken-stones {
+.rejected-colors {
     display: flex;
     flex-direction: row;
     margin: 20px 0;
 }
 
-.broken-stones-container {
+.rejected-colors-container {
     width: 1000px;
     min-height: 50px;
     display: flex;
@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.stone {
+.color {
     background-image: url('../../../assets/images/tile-gradient.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -59,7 +59,7 @@
     border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
 }
 
-.broken-stones-icon {
+.rejected-colors-icon {
     color: white;
     font-size: 26px;
     margin-right: 5px;

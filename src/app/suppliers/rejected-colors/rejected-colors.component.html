@@ -1,0 +1,6 @@
+<div class="rejected-colors">
+    <div class="rejected-colors-container">
+        <i class="rejected-colors-icon fas fa-recycle" *ngIf="rejectedColors.length"></i>
+        <button *ngFor="let color of rejectedColors" [ngClass]="'color ' + color" (click)="takeAll(color)"></button>
+    </div>
+</div>

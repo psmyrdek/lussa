@@ -3,7 +3,7 @@ import { Color } from '../../_models/ColorEnum';
 
 export enum PlayerActionTypes {
     TakeFromSupplier = '[Player] Take From Supplier',
-    TakeFromBrokenColors = '[Player] Take From Broken Colors',
+    TakeFromRejectedColors = '[Player] Take From Rejected Colors',
     FillColumn = '[Player] Fill Column',
     SkipTurn = '[Player] Skip Turn'
 }
@@ -24,8 +24,8 @@ export class SkipTurnAction implements Action {
     readonly type = PlayerActionTypes.SkipTurn;
 }
 
-export class TakeFromBrokenColorsAction implements Action {
-    readonly type = PlayerActionTypes.TakeFromBrokenColors;
+export class TakeFromRejectedColorsAction implements Action {
+    readonly type = PlayerActionTypes.TakeFromRejectedColors;
 
     constructor(public payload: { color: Color }) { }
 }
