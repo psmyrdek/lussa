@@ -1,6 +1,7 @@
 import { Supplier } from '../_models/Supplier';
 import { Color } from '../_models/ColorEnum';
 import { Player } from '../_models/Player';
+import { defaultColors } from './utils/default-colors';
 
 export interface AppState {
     suppliers: Supplier[];
@@ -14,30 +15,7 @@ export interface AppState {
 export const defaultAppState: AppState = {
     suppliers: [],
     playerId: '',
-    colors: [
-        Color.Orange,
-        Color.Orange,
-        Color.Orange,
-
-        Color.Cyan,
-        Color.Cyan,
-        Color.Cyan,
-
-        Color.Magenta,
-        Color.Magenta,
-        Color.Magenta,
-
-        Color.White,
-        Color.White,
-        Color.White,
-
-        Color.Yellow,
-        Color.Yellow,
-        Color.Yellow,
-
-        Color.Cyan,
-        Color.White
-    ],
+    colors: defaultColors,
     playerTurnColors: [],
     brokenColors: [],
     players: []
