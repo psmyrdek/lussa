@@ -16,3 +16,12 @@
         background: #e88653;
     }
 }
+
+.button--green {
+    background: #84d44d;
+    border-bottom: 2px solid #5ea72c;
+
+    &:hover {
+        background: #98e763;
+    }
+}

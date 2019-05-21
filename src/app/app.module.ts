@@ -15,6 +15,9 @@ import { appReducer } from './_app-state/app.reducer';
 import { PlayerHandComponent } from './field/player-hand/player-hand.component';
 import { PlayerActionsComponent } from './field/player-actions/player-actions.component';
 import { TopbarComponent } from './topbar/topbar.component';
+import { AppRouterModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,13 @@ import { TopbarComponent } from './topbar/topbar.component';
     RejectedColorsComponent,
     PlayerHandComponent,
     PlayerActionsComponent,
-    TopbarComponent
+    TopbarComponent,
+    HomeComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
+    AppRouterModule,
     StoreModule.forRoot({app: appReducer})
   ],
   providers: [],

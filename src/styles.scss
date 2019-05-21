@@ -16,4 +16,6 @@ html {
     box-sizing: border-box;
 }
 
+@import "./app/styles/flex.scss";
 @import "./app/styles/button.scss";
+@import "./app/styles/box.scss";
