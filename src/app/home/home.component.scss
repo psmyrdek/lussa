@@ -4,3 +4,17 @@
     justify-content: center;
     padding: 20px;
 }
+
+.home-box {
+    background-image: url('../../assets/images/lussa.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.home-header {
+    font-family: 'Kaushan Script', cursive;
+    color: #6d4e46;
+    font-size: 60px;
+    text-align: center;
+}
