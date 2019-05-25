@@ -1,0 +1,61 @@
+@import "../styles/stone-colors.map.scss";
+
+.bonus-colors-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.stone {
+    background-image: url('../../assets/images/tile-gradient.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    $stone-size: 25px;
+    width: $stone-size;
+    height: $stone-size;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 5px;
+    box-shadow: -3px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.empty-stone {
+    @extend .stone;
+    background-image: none;
+    box-shadow: none;
+    border: 1px dashed #333;
+}
+
+.color-white {
+    background-color: map-get($stone-colors, "white");
+    border-left: 2px solid darken(map-get($stone-colors, "white"), 20%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "white"), 30%);
+}
+
+.color-yellow {
+    background-color: map-get($stone-colors, "yellow");
+    border-left: 2px solid darken(map-get($stone-colors, "yellow"), 20%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "yellow"), 30%);
+}
+
+.color-cyan {
+    background-color: map-get($stone-colors, "cyan");
+    border-left: 2px solid darken(map-get($stone-colors, "cyan"), 20%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "cyan"), 30%);
+}
+
+.color-magenta {
+    background-color: map-get($stone-colors, "magenta");
+    border-left: 2px solid darken(map-get($stone-colors, "magenta"), 20%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "magenta"), 30%);
+}
+
+.color-orange {
+    background-color: map-get($stone-colors, "orange");
+    border-left: 2px solid darken(map-get($stone-colors, "orange"), 20%);
+    border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
+}
+
+.round-marker--active {
+    border-bottom: 2px solid #40c1ec;
+}

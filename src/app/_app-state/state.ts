@@ -10,7 +10,9 @@ export interface AppState {
     playerTurnColors: Color[];
     rejectedSupplierColors: Color[];
     brokenColors: Color[];
+    bonusColors: Color[];
     players: Player[];
+    roundNo: number;
 }
 
 export const defaultAppState: AppState = {
@@ -20,5 +22,7 @@ export const defaultAppState: AppState = {
     playerTurnColors: [],
     rejectedSupplierColors: [],
     brokenColors: [],
-    players: []
+    bonusColors: [],
+    players: [],
+    roundNo: 1
 }

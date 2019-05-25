@@ -1,0 +1,10 @@
+<div class="bonus-colors">
+  <div class="bonus-colors-container">
+      <div class="round-marker" [ngClass]="roundNo === 1 ? 'round-marker--active' : ''">
+          <div class="empty-stone"></div>
+      </div>
+      <div *ngFor="let color of colors; let i = index;" class="round-marker" [ngClass]="i === roundNo - 2 ? 'round-marker--active' : ''">
+        <div [ngClass]="'stone ' + color"></div>
+      </div>
+  </div>
+</div>

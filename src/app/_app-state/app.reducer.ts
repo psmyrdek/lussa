@@ -11,6 +11,7 @@ import { Column } from '../_models/Column';
 import { ColumnVariantEnum } from '../_models/ColumnVariantEnum';
 import { getCurrentPlayer } from './utils/get-current-player';
 import { updatePlayer } from './utils/update-player';
+import { getBonusColors } from './utils/get-bonus.colors';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -36,6 +37,14 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                     { id: 5, colors: [] },
                     { id: 6, colors: [] }
                 ]
+            }
+        }
+        case AppActionTypes.InitBonusColors: {
+            const [toGet, toKeep] = getBonusColors(state.colors);
+            return {
+                ...state,
+                colors: toKeep,
+                bonusColors: toGet
             }
         }
         case TurnActionTypes.InitSupplierColors: {
@@ -155,6 +164,9 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 playerTurnColors
             }
 
+        }
+        default: {
+            return state;
         }
     }
 }

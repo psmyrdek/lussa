@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InitSuppliersAction, AddPlayerAction } from './_app-state/actions/app.actions';
+import { InitSuppliersAction, AddPlayerAction, InitBonusColorsAction } from './_app-state/actions/app.actions';
 import { InitSupplierColorsAction } from './_app-state/actions/turn.actions';
 import { AppState } from './_app-state/state';
 
@@ -18,6 +18,7 @@ export class AppComponent {
     this.store.dispatch(new AddPlayerAction({id: uuidv4()}));
 
     this.store.dispatch(new InitSuppliersAction({ noOfPlayers: 4 }));
+    this.store.dispatch(new InitBonusColorsAction());
     
     // Turn setup
     this.store.dispatch(new InitSupplierColorsAction());

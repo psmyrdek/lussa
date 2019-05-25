@@ -18,6 +18,7 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { AppRouterModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
+import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { GameComponent } from './game/game.component';
     PlayerActionsComponent,
     TopbarComponent,
     HomeComponent,
-    GameComponent
+    GameComponent,
+    BonusColorsComponent
   ],
   imports: [
     BrowserModule,
