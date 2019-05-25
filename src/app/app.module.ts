@@ -20,8 +20,6 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
 import { ScoreSummaryComponent } from './score-summary/score-summary.component';
-import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './_app-state/effects/app.effects';
 
 @NgModule({
   declarations: [
@@ -45,8 +43,7 @@ import { AppEffects } from './_app-state/effects/app.effects';
   imports: [
     BrowserModule,
     AppRouterModule,
-    StoreModule.forRoot({app: appReducer}),
-    EffectsModule.forRoot([AppEffects])
+    StoreModule.forRoot({app: appReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

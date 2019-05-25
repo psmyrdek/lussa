@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { InitSuppliersAction, AddPlayerAction, InitBonusColorsAction } from './_app-state/actions/app.actions';
-import { InitSupplierColorsAction } from './_app-state/actions/turn.actions';
+import { InitSupplierColorsAction, MarkNextRoundAction } from './_app-state/actions/round.actions';
 import { AppState } from './_app-state/state';
 
 import { v4 as uuidv4 } from 'uuid'
+import { shouldProceedToNextRound } from './_app-state/utils/round-checker';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,17 @@ export class AppComponent {
     this.store.dispatch(new InitSuppliersAction({ noOfPlayers: 4 }));
     this.store.dispatch(new InitBonusColorsAction());
     
-    // Turn setup
+    // Round setup
     this.store.dispatch(new InitSupplierColorsAction());
+
+    this.store.pipe(select('app'))
+      .subscribe((state: AppState) => {
+        if (shouldProceedToNextRound(state)) {
+          alert('Next round!')
+          this.store.dispatch(new InitSupplierColorsAction());
+          this.store.dispatch(new MarkNextRoundAction());
+        }
+      })
   }
 
 }

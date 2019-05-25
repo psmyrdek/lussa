@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { Supplier } from '../_models/Supplier';
 import { AppActionTypes, AddPlayerAction } from './actions/app.actions';
 import { getForSupplier } from './utils/get-for-supplier';
-import { TurnActionTypes } from './actions/turn.actions';
+import { RoundActionTypes } from './actions/round.actions';
 import { AppState, defaultAppState } from './state';
 import { PlayerActionTypes, TakeFromSupplierAction, FillColumnAction, TakeFromRejectedColorsAction } from './actions/player.actions';
 import { Color } from '../_models/ColorEnum';
@@ -49,7 +49,7 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 bonusColors: toGet
             }
         }
-        case TurnActionTypes.InitSupplierColors: {
+        case RoundActionTypes.InitSupplierColors: {
 
             let availableColors = state.colors
             let toGet, toKeep;
@@ -64,6 +64,12 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 ...state,
                 colors: availableColors,
                 suppliers: filledSuppliers
+            }
+        }
+        case RoundActionTypes.MarkNextRound: {
+            return {
+                ...state,
+                roundNo: state.roundNo + 1
             }
         }
         case PlayerActionTypes.TakeFromSupplier: {
