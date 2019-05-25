@@ -1,3 +1,5 @@
 # Lussa
 
-Board game as a service.
+## Online game inspired by "Azul - Stained Glass of Sintra"
+
+![](./media/readme.png)
