@@ -12,8 +12,6 @@ export function updateScoreSteps(noOfBroken: number, scoreSteps: ScoreStep[]): S
     const currentIndex = scoreSteps.findIndex(s => s.isActive);
     const newIndex = (currentIndex + noOfBroken) % scoreSteps.length;
 
-    console.log(newIndex);
-
     return scoreSteps
         .map((step, index) => ({
             ...step,
