@@ -19,6 +19,7 @@ import { AppRouterModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
+import { ScoreSummaryComponent } from './score-summary/score-summary.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
     TopbarComponent,
     HomeComponent,
     GameComponent,
-    BonusColorsComponent
+    BonusColorsComponent,
+    ScoreSummaryComponent
   ],
   imports: [
     BrowserModule,

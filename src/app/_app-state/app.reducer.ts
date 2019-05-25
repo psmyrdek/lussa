@@ -12,6 +12,7 @@ import { ColumnVariantEnum } from '../_models/ColumnVariantEnum';
 import { getCurrentPlayer } from './utils/get-current-player';
 import { updatePlayer } from './utils/update-player';
 import { getBonusColors } from './utils/get-bonus.colors';
+import { getUpdatedColumn } from './utils/update-column';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -121,11 +122,19 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
             // Empty player turn colors
             state.playerTurnColors = [];
 
-            // Block columns to the left from picked
-            player.columns = player.columns.map((column, index) => ({
-                ...column,
-                isDisabled: index < columnId
+            // Update column
+            player.columns = player.columns.map((column, index) => getUpdatedColumn(column, {
+                columnIndex: columnId
             }))
+
+            // Add scores from column
+            if (variant.fields.every(f => f.isFilled)) {
+                player.score += player.columns
+                    .filter(c => c.id >= columnId && c.isVariantCompleted)
+                    .reduce((prev, current) => {
+                        return prev + current.value;
+                    }, 0);
+            }
 
             return {
                 ...state,

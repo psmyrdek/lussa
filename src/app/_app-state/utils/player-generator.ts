@@ -4,6 +4,7 @@ import { getRandomInt } from './random-int';
 import { ColumnVariantEnum } from 'src/app/_models/ColumnVariantEnum';
 import { ColumnVariant } from 'src/app/_models/ColumnVariant';
 import { Color } from 'src/app/_models/ColorEnum';
+import { ScoreStep } from 'src/app/_models/ScoreStep';
 
 const variantPairs: [ColumnVariant, ColumnVariant][] = [
     [
@@ -200,9 +201,26 @@ function generateColumns(): Column[] {
 
 }
 
+function generateScoreSteps(): ScoreStep[] {
+    return [
+        { isActive: true, value: 0 },
+        { isActive: false, value: -1 },
+        { isActive: false, value: -2 },
+        { isActive: false, value: -4 },
+        { isActive: false, value: -5 },
+        { isActive: false, value: -8 },
+        { isActive: false, value: -10 },
+        { isActive: false, value: -12 },
+        { isActive: false, value: -15 },
+        { isActive: false, value: -18 }
+    ]
+}
+
 export function generatePlayer(id: string): Player {
     return {
         id,
+        score: 0,
+        scoreSteps: generateScoreSteps(),
         columns: generateColumns()
     }
 }

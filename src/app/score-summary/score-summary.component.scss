@@ -1,0 +1,84 @@
+.score-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.score-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.score-entry {
+    $size: 20px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+    width: $size;
+    height: $size;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.score-entry--active {
+    color: white;
+    background: #40c1ec;
+}
+
+.score-row--0 {
+    $color: #40c1ec;
+    
+    .score-entry {
+        border-color: $color;
+    }
+
+    .score-entry--active {
+        background-color: $color;
+    }
+}
+
+.score-row--1 {
+    $color: #ec4040;
+    
+    .score-entry {
+        border-color: $color;
+    }
+
+    .score-entry--active {
+        background-color: $color;
+    }
+}
+
+.score-row--2 {
+    $color: #60e252;
+    
+    .score-entry {
+        border-color: $color;
+    }
+
+    .score-entry--active {
+        background-color: $color;
+    }
+}
+
+.score-row--3 {
+    $color: #b688e4;
+    
+    .score-entry {
+        border-color: $color;
+    }
+
+    .score-entry--active {
+        background-color: $color;
+    }
+}
+
+.score-row {
+    margin-bottom: 3px;
+}
+
+.current-score {
+    width: 20px;
+}
