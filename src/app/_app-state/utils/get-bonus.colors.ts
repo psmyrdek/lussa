@@ -7,7 +7,7 @@ export function getBonusColors(colors: Color[]): [Color[], Color[]] {
     const indexOfColors = [];
 
     while (indexOfColors.length < 5) {
-        const index = getRandomInt(0, colors.length);
+        const index = getRandomInt(0, colors.length - 1);
 
         if (!indexOfColors.includes(index) && !bonusColors.includes(colors[index])) {
             bonusColors.push(colors[index])
