@@ -6,6 +6,7 @@
 .score-row {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .score-entry {
@@ -80,5 +81,5 @@
 }
 
 .current-score {
-    width: 20px;
+    width: 30px;
 }

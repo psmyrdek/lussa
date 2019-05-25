@@ -13,6 +13,7 @@ import { getCurrentPlayer } from './utils/get-current-player';
 import { updatePlayer } from './utils/update-player';
 import { getBonusColors } from './utils/get-bonus.colors';
 import { getUpdatedColumn } from './utils/update-column';
+import { updateScoreSteps, calcTurnPenalty } from './utils/broken-stones';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -135,6 +136,10 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                         return prev + current.value;
                     }, 0);
             }
+
+            // Update broken stones penalty
+            player.score += calcTurnPenalty(toBreak.length, player.scoreSteps);
+            player.scoreSteps = updateScoreSteps(toBreak.length, player.scoreSteps);
 
             return {
                 ...state,
