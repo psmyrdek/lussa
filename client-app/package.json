@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build --watch=true --statsJson=true --extractCss=true --deployUrl=/statics/",
-    "build": "ng build --prod=true --vendorChunk=true --progress=false",
+    "build": "ng build --prod=true --vendorChunk=true --progress=false --deployUrl=/statics/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
