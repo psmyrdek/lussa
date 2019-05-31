@@ -45,14 +45,6 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
                 ]
             }
         }
-        case AppActionTypes.InitBonusColors: {
-            const [toGet, toKeep] = getBonusColors(state.colors);
-            return {
-                ...state,
-                colors: toKeep,
-                bonusColors: toGet
-            }
-        }
         case RoundActionTypes.InitSupplierColors: {
 
             let availableColors = state.colors

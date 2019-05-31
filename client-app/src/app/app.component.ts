@@ -1,11 +1,4 @@
 import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { InitSuppliersAction, AddPlayerAction, InitBonusColorsAction } from './_app-state/actions/app.actions';
-import { InitSupplierColorsAction, MarkNextRoundAction } from './_app-state/actions/round.actions';
-import { AppState } from './_app-state/state';
-
-import { v4 as uuidv4 } from 'uuid'
-import { shouldProceedToNextRound } from './_app-state/utils/round-checker';
 
 @Component({
   selector: 'app-root',
