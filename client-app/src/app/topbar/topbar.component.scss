@@ -2,9 +2,23 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     background: #ffffff;
     border-bottom: 2px solid #949494;
     box-shadow: 0 2px 4px rgba(0,0,0,0.7);
     padding: 5px;
     margin-bottom: 10px;
+}
+
+.button-action {
+    border-radius: 3px;
+    color: #333;
+    background: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.button-action--blue {
+    border: 2px solid #26bcec;
+    color: #26bcec;
 }
