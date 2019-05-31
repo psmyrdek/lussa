@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Supplier } from '../_models/Supplier';
-import { AppActionTypes, AddPlayerAction } from './actions/app.actions';
+import { AppActionTypes, AddPlayerAction, InitStateAction } from './actions/app.actions';
 import { getForSupplier } from './utils/get-for-supplier';
 import { RoundActionTypes } from './actions/round.actions';
 import { AppState, defaultAppState } from './state';
@@ -17,6 +17,10 @@ import { updateScoreSteps, calcTurnPenalty } from './utils/broken-stones';
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
+        case AppActionTypes.InitState: {
+            const actionPayload = (action as InitStateAction).payload;
+            return actionPayload.state;
+        }
         case AppActionTypes.AddPlayer: {
 
             const actionPayload = (action as AddPlayerAction).payload;

@@ -4,13 +4,9 @@
       <h1 class="box-header-text home-header">Lussa</h1>
     </div>
     <div class="box-body">
-
       <div class="flex flex-row justify-content-center">
-        <a [routerLink]="['game/' + gameId]">
-          <button class="button button--green">New game</button>
-        </a>
+        <button class="button button--green" (click)="createNewGame()">New game</button>
       </div>
-
     </div>
   </div>
 </div>

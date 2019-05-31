@@ -4,6 +4,7 @@ import { Player } from '../_models/Player';
 import { defaultColors } from './utils/default-colors';
 
 export interface AppState {
+    isGameCreated: boolean;
     suppliers: Supplier[];
     colors: Color[];
     playerId: string;
@@ -16,6 +17,7 @@ export interface AppState {
 }
 
 export const defaultAppState: AppState = {
+    isGameCreated: false,
     suppliers: [],
     playerId: '',
     colors: defaultColors,

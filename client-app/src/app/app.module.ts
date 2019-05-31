@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
 import { ScoreSummaryComponent } from './score-summary/score-summary.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ScoreSummaryComponent } from './score-summary/score-summary.component';
   imports: [
     BrowserModule,
     AppRouterModule,
+    HttpClientModule,
     StoreModule.forRoot({app: appReducer})
   ],
   providers: [],
