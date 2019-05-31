@@ -16,6 +16,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "pino": "^5.12.6",
+    "socket.io": "2.2.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { SocketIoModule } from 'ngx-socket-io';
 import { AppComponent } from './app.component';
 import { PlayersContainerComponent } from './players/players-container/players-container.component';
 import { SuppliersContainerComponent } from './suppliers/suppliers-container/suppliers-container.component';
@@ -45,7 +45,11 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     AppRouterModule,
     HttpClientModule,
-    StoreModule.forRoot({app: appReducer})
+    StoreModule.forRoot({ app: appReducer }),
+    SocketIoModule.forRoot({
+      url: '/',
+      options: {}
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
