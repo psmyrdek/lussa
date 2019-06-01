@@ -1,11 +1,11 @@
 <div class="score-summary">
   <div class="score-row" *ngFor="let playerScore of playersScore; let i = index;" [ngClass]="'score-row--' + i">
+    <div class="dot" [ngClass]="{'dot--ready': playerScore.isReady}"></div>
     <div class="current-score">{{ playerScore.score }}</div>
     <div *ngFor="let scoreStep of playerScore.scoreSteps">
       <div class="score-entry" [ngClass]="{'score-entry--active': scoreStep.isActive}">
         {{ scoreStep.value }}
       </div>
     </div>
-    <div class="dot" [ngClass]="{'dot--ready': playerScore.isReady}"></div>
   </div>
 </div>

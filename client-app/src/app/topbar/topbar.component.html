@@ -1,4 +1,4 @@
-<div class="topbar">
+<div class="topbar" [ngClass]="playerColor">
   <div>
     <app-score-summary></app-score-summary>
   </div>
@@ -6,11 +6,11 @@
     <app-bonus-colors></app-bonus-colors>
   </div>
   <div class="flex flex-row">
-    <button *ngIf="canJoin" class="button-action button-action--blue" (click)="joinGame()">
+    <button *ngIf="canJoin" class="button-action" (click)="joinGame()">
       <i class="fas fa-user-plus"></i>
     </button>
 
-    <button *ngIf="canMarkReady" class="button-action button-action--green" (click)="markReady()">
+    <button *ngIf="canMarkReady" class="button-action" (click)="markReady()">
       <i class="fas fa-hand-paper"></i>
     </button>
     

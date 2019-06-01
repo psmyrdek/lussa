@@ -16,6 +16,8 @@ export class TopbarComponent implements OnInit {
   canJoin: boolean = true;
   canMarkReady: boolean = false;
 
+  playerColor: string = '';
+
   constructor(
     private store: Store<AppState>,
     private gamesService: GamesService,
@@ -25,6 +27,11 @@ export class TopbarComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select('app'))
       .subscribe((state: AppState) => {
+
+        if (!this.playerColor && state.isGameLoaded) {
+          this.updatePlayerColor(state)
+        }
+
         const player = state.players.find(x => x.id === state.playerId)
 
         this.canJoin = !state.isGameLoaded;
@@ -38,7 +45,7 @@ export class TopbarComponent implements OnInit {
     this.gamesService.joinGame(gameId)
       .subscribe(
         (state: AppState) => {
-          this.store.dispatch(new InitStateAction({state}));
+          this.store.dispatch(new InitStateAction({ state }));
         },
         (err) => {
           alert(`Cannot join ${gameId}`)
@@ -48,6 +55,11 @@ export class TopbarComponent implements OnInit {
 
   markReady() {
     this.store.dispatch(new MarkReadinessAction())
+  }
+
+  updatePlayerColor(state: AppState) {
+    const index = state.players.findIndex(x => x.id === state.playerId)
+    this.playerColor = `topbar-player-${index.toString()}`
   }
 
 }
