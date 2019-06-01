@@ -25,7 +25,9 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
 
             return {
                 ...state,
+                roundNo: actionPayload.roundNo,
                 suppliers: actionPayload.suppliers,
+                colors: actionPayload.colors,
                 players: actionPayload.players
             }
         }

@@ -2,9 +2,26 @@ const { defaultColors } = require('../utils/default-colors');
 const { generatePlayer } = require('../utils/generate-player');
 const { getBonusColors } = require('../utils/get-bonus-colors');
 const { createSuppliers } = require('../utils/create-suppliers')
+const { getSupplierColors } = require('../utils/get-supplier-colors.js')
 const uuidv4 = require('uuid/v4');
 
 const state = {}
+
+function startNewRound(game) {
+    game.roundNo++;
+
+    let availableColors = game.colors
+
+    const filledSuppliers = game.suppliers.map(supplier => {
+        const [toGet, toKeep] = getSupplierColors(availableColors);
+        availableColors = toKeep
+        return { ...supplier, colors: toGet }
+    })
+
+    game.colors = availableColors;
+    game.suppliers = filledSuppliers;
+
+}
 
 module.exports.initGame = () => {
     const gameId = uuidv4();
@@ -67,5 +84,16 @@ module.exports.markPlayerReadiness = (gameId, playerId) => {
 
     const player = game.players.find(x => x.id === playerId);
     player.isReady = true;
+}
 
+module.exports.tryStartGame = (gameId) => {
+
+    const game = state[gameId];
+
+    if (game.players.every(player => player.isReady)) {
+        startNewRound(game);
+        return true;
+    }
+
+    return false;
 }
