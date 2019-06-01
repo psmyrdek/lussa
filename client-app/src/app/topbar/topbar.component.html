@@ -5,9 +5,14 @@
   <div>
     <app-bonus-colors></app-bonus-colors>
   </div>
-  <div>
+  <div class="flex flex-row">
     <button *ngIf="canJoin" class="button-action button-action--blue" (click)="joinGame()">
       <i class="fas fa-user-plus"></i>
     </button>
+
+    <button *ngIf="canMarkReady" class="button-action button-action--green" (click)="markReady()">
+      <i class="fas fa-hand-paper"></i>
+    </button>
+    
   </div>
 </div>

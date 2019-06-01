@@ -6,4 +6,5 @@ export interface Player {
     score: number;
     scoreSteps: ScoreStep[];
     columns: Column[];
+    isReady: boolean;
 }

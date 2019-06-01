@@ -12,17 +12,17 @@ export class MessagingService {
         private gameSocket: Socket,
         private store: Store<AppState>
     ) {
-        this.gameSocket.on('connect', () => {
-            console.log('connected')
-        });
-
         this.gameSocket.on('update game state', (stateUpdate: StateUpdate) => {
             this.store.dispatch(new UpdateStateAction({ update: stateUpdate }))
         })
     }
 
-    emitJoin(gameId) {
-        this.gameSocket.emit('join', gameId)
+    emitJoin(payload: {gameId: string}) {
+        this.gameSocket.emit('join', payload)
+    }
+
+    emitReady(payload: {gameId: string, playerId: string}) {
+        this.gameSocket.emit('player ready', payload)
     }
 
 }

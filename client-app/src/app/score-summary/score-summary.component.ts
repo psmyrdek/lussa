@@ -4,14 +4,14 @@ import { AppState } from '../_app-state/state';
 import { Store, select } from '@ngrx/store';
 import { playerScores } from '../_app-state/selectors/player-scores';
 
-type PlayerScore = { score: number; scoreSteps: ScoreStep[] }
+type PlayerScore = { score: number; scoreSteps: ScoreStep[]; isReady: boolean; }
 
 @Component({
   selector: 'app-score-summary',
   templateUrl: './score-summary.component.html',
   styleUrls: ['./score-summary.component.scss']
 })
-export class ScoreSummaryComponent {
+export class ScoreSummaryComponent {x
 
   playersScore: PlayerScore[] = [];
 

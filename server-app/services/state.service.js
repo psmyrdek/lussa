@@ -6,22 +6,14 @@ const uuidv4 = require('uuid/v4');
 
 const state = {}
 
-
-function addPlayer(gameId, playerId) {
-    const game = state[gameId];
-    game.players.push(generatePlayer(playerId))
-    game.suppliers = createSuppliers(game.players.length);
-
-
-    return game;
-}
-
-function initGameState() {
+module.exports.initGame = () => {
+    const gameId = uuidv4();
 
     const [bonusColors, remainingColors] = getBonusColors(defaultColors);
 
     const gameState = {
-        isGameCreated: true,
+        isGameLoaded: true,
+        gameId: gameId,
         playerId: '',
         suppliers: [],
         colors: remainingColors,
@@ -30,15 +22,10 @@ function initGameState() {
         brokenColors: [],
         bonusColors,
         players: [],
-        roundNo: 1
+        roundNo: 0
     }
 
-    return gameState
-}
-
-module.exports.initGame = () => {
-    const gameId = uuidv4();
-    state[gameId] = initGameState();
+    state[gameId] = gameState;
     return { gameId };
 }
 
@@ -53,7 +40,9 @@ module.exports.join = (gameId) => {
         throw new Error(`Players limit (4) for game ${gameId} reached`);
     }
 
-    addPlayer(gameId, playerId)
+    const game = state[gameId];
+    game.players.push(generatePlayer(playerId))
+    game.suppliers = createSuppliers(game.players.length);
 
     return Object.assign({}, state[gameId], { playerId });
 }
@@ -65,5 +54,18 @@ module.exports.getGameState = gameId => {
     }
 
     return state[gameId];
+
+}
+
+module.exports.markPlayerReadiness = (gameId, playerId) => {
+
+    if (!state[gameId]) {
+        throw new Error(`Game ${gameId} does not exist!`);
+    }
+
+    const game = state[gameId];
+
+    const player = game.players.find(x => x.id === playerId);
+    player.isReady = true;
 
 }

@@ -221,6 +221,7 @@ export function generatePlayer(id: string): Player {
         id,
         score: 0,
         scoreSteps: generateScoreSteps(),
-        columns: generateColumns()
+        columns: generateColumns(),
+        isReady: false
     }
 }

@@ -16,7 +16,7 @@ export class StageComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select('app'))
       .subscribe((state: AppState) => {
-        this.canRenderState = state.isGameCreated
+        this.canRenderState = state.isGameLoaded
       })
   }
 

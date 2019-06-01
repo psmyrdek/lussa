@@ -5,7 +5,8 @@ export enum PlayerActionTypes {
     TakeFromSupplier = '[Player] Take From Supplier',
     TakeFromRejectedColors = '[Player] Take From Rejected Colors',
     FillColumn = '[Player] Fill Column',
-    SkipTurn = '[Player] Skip Turn'
+    SkipTurn = '[Player] Skip Turn',
+    MarkReadiness = '[Player] Mark Readiness'
 }
 
 export class TakeFromSupplierAction implements Action {
@@ -28,4 +29,8 @@ export class TakeFromRejectedColorsAction implements Action {
     readonly type = PlayerActionTypes.TakeFromRejectedColors;
 
     constructor(public payload: { color: Color }) { }
+}
+
+export class MarkReadinessAction implements Action {
+    readonly type = PlayerActionTypes.MarkReadiness;
 }

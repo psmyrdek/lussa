@@ -21,6 +21,8 @@ import { GameComponent } from './game/game.component';
 import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
 import { ScoreSummaryComponent } from './score-summary/score-summary.component';
 import { HttpClientModule } from '@angular/common/http'
+import { EffectsModule } from '@ngrx/effects'
+import { GameEffects } from './_app-state/effects/game.effects';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { HttpClientModule } from '@angular/common/http'
     AppRouterModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer }),
+    EffectsModule.forRoot([GameEffects]),
     SocketIoModule.forRoot({
       url: '/',
       options: {}

@@ -216,5 +216,6 @@ module.exports.generatePlayer = (playerId) => ({
     id: playerId,
     score: 0,
     scoreSteps: generateScoreSteps(),
-    columns: generateColumns()
+    columns: generateColumns(),
+    isReady: false
 })

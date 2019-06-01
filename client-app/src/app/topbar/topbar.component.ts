@@ -4,7 +4,7 @@ import { AppState } from '../_app-state/state';
 import { GamesService } from '../_services/games.service';
 import { ActivatedRoute } from '@angular/router';
 import { InitStateAction } from '../_app-state/actions/app.actions';
-import { MessagingService } from '../_services/messaging.service';
+import { MarkReadinessAction } from '../_app-state/actions/player.actions';
 
 @Component({
   selector: 'app-topbar',
@@ -14,18 +14,21 @@ import { MessagingService } from '../_services/messaging.service';
 export class TopbarComponent implements OnInit {
 
   canJoin: boolean = true;
+  canMarkReady: boolean = false;
 
   constructor(
     private store: Store<AppState>,
     private gamesService: GamesService,
     private route: ActivatedRoute,
-    private messaging: MessagingService
   ) { }
 
   ngOnInit() {
     this.store.pipe(select('app'))
       .subscribe((state: AppState) => {
-        this.canJoin = !state.isGameCreated
+        const player = state.players.find(x => x.id === state.playerId)
+
+        this.canJoin = !state.isGameLoaded;
+        this.canMarkReady = state.isGameLoaded && !player.isReady;
       })
   }
 
@@ -36,12 +39,15 @@ export class TopbarComponent implements OnInit {
       .subscribe(
         (state: AppState) => {
           this.store.dispatch(new InitStateAction({state}));
-          this.messaging.emitJoin(gameId);
         },
         (err) => {
           alert(`Cannot join ${gameId}`)
         }
       )
+  }
+
+  markReady() {
+    this.store.dispatch(new MarkReadinessAction())
   }
 
 }

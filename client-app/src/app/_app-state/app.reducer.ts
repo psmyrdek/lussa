@@ -173,6 +173,18 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
             }
 
         }
+        case PlayerActionTypes.MarkReadiness: {
+
+            const player = getCurrentPlayer(state);
+
+            player.isReady = true;
+
+            return {
+                ...state,
+                players: updatePlayer(state, player)
+            }
+
+        }
         case PlayerActionTypes.TakeFromRejectedColors: {
 
             const actionPayload = (action as TakeFromRejectedColorsAction).payload;

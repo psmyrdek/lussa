@@ -6,10 +6,13 @@ module.exports.initWs = server => {
     io.on('connection', (socket) => {
         console.log('Client connected')
 
-        socket.on('join', (gameId) => {
-            console.log(`Joining ${gameId}`)
-            socket.join(gameId)
+        socket.on('join', ({gameId}) => {
+            socket.join(gameId);
+            socket.to(gameId).emit('update game state', stateService.getGameState(gameId));
+        });
 
+        socket.on('player ready', ({gameId, playerId}) => {
+            stateService.markPlayerReadiness(gameId, playerId);
             socket.to(gameId).emit('update game state', stateService.getGameState(gameId));
         })
         
