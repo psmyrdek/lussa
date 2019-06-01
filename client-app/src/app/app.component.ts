@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SocketWrapperService } from './_services/socket-wrapper.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,7 @@ import { SocketWrapperService } from './_services/socket-wrapper.service';
 })
 export class AppComponent {
 
-  constructor(private socketWrapper: SocketWrapperService) {
+  constructor() {
     // // Initial setup
     // this.store.dispatch(new AddPlayerAction({id: uuidv4()}));
 

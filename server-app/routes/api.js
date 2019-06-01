@@ -7,11 +7,14 @@ module.exports.createApiRouter = (stateService) => {
     })
 
     apiRouter.post('/api/game/:gameId/join', ({ params: { gameId } }, res) => {
-        try {
-            res.json(stateService.join(gameId))
-        } catch (err) {
-            res.status(400).send(`Cannot join game ${gameId}`)
+        res.json(stateService.join(gameId))
+    })
+
+    apiRouter.use((err, req, res, next) => {
+        if (err) {
+            console.error(err.message)
         }
+        next()
     })
 
     return apiRouter;

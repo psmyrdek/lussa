@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Supplier } from '../_models/Supplier';
-import { AppActionTypes, AddPlayerAction, InitStateAction } from './actions/app.actions';
+import { AppActionTypes, AddPlayerAction, InitStateAction, UpdateStateAction } from './actions/app.actions';
 import { getForSupplier } from './utils/get-for-supplier';
 import { RoundActionTypes } from './actions/round.actions';
 import { AppState, defaultAppState } from './state';
@@ -11,7 +11,6 @@ import { Column } from '../_models/Column';
 import { ColumnVariantEnum } from '../_models/ColumnVariantEnum';
 import { getCurrentPlayer } from './utils/get-current-player';
 import { updatePlayer } from './utils/update-player';
-import { getBonusColors } from './utils/get-bonus.colors';
 import { getUpdatedColumn } from './utils/update-column';
 import { updateScoreSteps, calcTurnPenalty } from './utils/broken-stones';
 
@@ -20,6 +19,15 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
         case AppActionTypes.InitState: {
             const actionPayload = (action as InitStateAction).payload;
             return actionPayload.state;
+        }
+        case AppActionTypes.UpdateState: {
+            const actionPayload = (action as UpdateStateAction).payload.update;
+
+            return {
+                ...state,
+                suppliers: actionPayload.suppliers,
+                players: actionPayload.players
+            }
         }
         case AppActionTypes.AddPlayer: {
 

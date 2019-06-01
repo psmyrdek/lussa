@@ -6,7 +6,7 @@
     <app-bonus-colors></app-bonus-colors>
   </div>
   <div>
-    <button class="button-action button-action--blue" (click)="joinGame()">
+    <button *ngIf="canJoin" class="button-action button-action--blue" (click)="joinGame()">
       <i class="fas fa-user-plus"></i>
     </button>
   </div>

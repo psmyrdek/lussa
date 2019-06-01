@@ -1,12 +1,22 @@
-const {defaultColors} = require('../utils/default-colors');
-const {generatePlayer} = require('../utils/generate-player');
-const {getBonusColors} = require('../utils/get-bonus-colors');
-const {createSuppliers} = require('../utils/create-suppliers')
+const { defaultColors } = require('../utils/default-colors');
+const { generatePlayer } = require('../utils/generate-player');
+const { getBonusColors } = require('../utils/get-bonus-colors');
+const { createSuppliers } = require('../utils/create-suppliers')
 const uuidv4 = require('uuid/v4');
 
 const state = {}
 
-const initGameState = () => {
+
+function addPlayer(gameId, playerId) {
+    const game = state[gameId];
+    game.players.push(generatePlayer(playerId))
+    game.suppliers = createSuppliers(game.players.length);
+
+
+    return game;
+}
+
+function initGameState() {
 
     const [bonusColors, remainingColors] = getBonusColors(defaultColors);
 
@@ -26,23 +36,13 @@ const initGameState = () => {
     return gameState
 }
 
-const addPlayer = (gameId, playerId) => {
-    const game = state[gameId];
-    game.players.push(generatePlayer(playerId))
-
-    game.suppliers = createSuppliers(game.players.length);
-    
-    return game;
-}
-
 module.exports.initGame = () => {
     const gameId = uuidv4();
     state[gameId] = initGameState();
-    return {gameId};
+    return { gameId };
 }
 
 module.exports.join = (gameId) => {
-
     const playerId = uuidv4();
 
     if (!state[gameId]) {
@@ -56,4 +56,14 @@ module.exports.join = (gameId) => {
     addPlayer(gameId, playerId)
 
     return Object.assign({}, state[gameId], { playerId });
+}
+
+module.exports.getGameState = gameId => {
+
+    if (!state[gameId]) {
+        throw new Error(`Game ${gameId} does not exist!`);
+    }
+
+    return state[gameId];
+
 }
