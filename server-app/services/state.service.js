@@ -39,7 +39,8 @@ module.exports.initGame = () => {
         brokenColors: [],
         bonusColors,
         players: [],
-        roundNo: 0
+        roundNo: 0,
+        playerTurnIndex: 0
     }
 
     state[gameId] = gameState;

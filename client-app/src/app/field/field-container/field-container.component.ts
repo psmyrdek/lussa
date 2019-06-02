@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Column } from 'src/app/_models/Column';
 import { AppState } from 'src/app/_app-state/state';
 import { Store, select } from '@ngrx/store';
-import { selectCurrentUser } from 'src/app/_app-state/selectors/current-player';
+import { selectCurrentPlayer } from 'src/app/_app-state/selectors/current-player';
 import { Player } from 'src/app/_models/Player';
 
 @Component({
@@ -16,7 +16,7 @@ export class FieldContainerComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.store
-      .pipe(select(selectCurrentUser))
+      .pipe(select(selectCurrentPlayer))
       .subscribe(
         (player: Player) => {
           this.columnsModel = player.columns

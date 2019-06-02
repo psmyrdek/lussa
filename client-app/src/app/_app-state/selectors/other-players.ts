@@ -3,7 +3,7 @@ import { AppState } from '../state';
 
 export const getAppState = createFeatureSelector<AppState>('app');
 
-export const selectCurrentPlayer = createSelector(
+export const selectOtherPlayers = createSelector(
     getAppState,
-    (state: AppState) => state.players.find(x => x.id === state.playerId)
+    (state: AppState) => (state.players || []).filter(x => x.id !== state.playerId)
 ) 

@@ -1,8 +1,8 @@
-<div class="stage" *ngIf="canRenderState">
-  <div class="main-stage">
-    <app-suppliers-container></app-suppliers-container>
-    <app-rejected-colors></app-rejected-colors>
+<div class="flex flex-column" *ngIf="canRenderState">
+  <app-suppliers-container></app-suppliers-container>
+  <app-rejected-colors></app-rejected-colors>
+  <div class="flex flex-row">
     <app-field-container></app-field-container>
+    <app-players-container></app-players-container>
   </div>
-  <app-players-container></app-players-container>
 </div>

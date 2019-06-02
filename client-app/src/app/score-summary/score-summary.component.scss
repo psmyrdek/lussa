@@ -96,3 +96,12 @@
 .dot--ready {
     background: #30d88c;
 }
+
+.turn-indicator {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #6b6b6b;
+    margin-left: 5px;
+}

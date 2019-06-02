@@ -1,1 +1,7 @@
-<div class="players-container"></div>
+<div class="players-container flex flex-column">
+    <div class="flex flex-column">
+        <div class="columns-container" *ngFor="let player of players">
+            <app-columns [columns]="player.columns"></app-columns>
+        </div>
+    </div>
+</div>
