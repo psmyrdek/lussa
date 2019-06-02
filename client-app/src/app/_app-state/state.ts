@@ -4,12 +4,11 @@ import { Player } from '../_models/Player';
 import { defaultColors } from './utils/default-colors';
 
 export interface AppState {
-    isGameLoaded: boolean;
     gameId: string;
+    playerId: string;
+
     suppliers: Supplier[];
     colors: Color[];
-    playerId: string;
-    playerTurnColors: Color[];
     rejectedSupplierColors: Color[];
     brokenColors: Color[];
     bonusColors: Color[];
@@ -19,12 +18,11 @@ export interface AppState {
 }
 
 export const defaultAppState: AppState = {
-    isGameLoaded: false,
     gameId: '',
-    suppliers: [],
     playerId: '',
+    
+    suppliers: [],
     colors: defaultColors,
-    playerTurnColors: [],
     rejectedSupplierColors: [],
     brokenColors: [],
     bonusColors: [],

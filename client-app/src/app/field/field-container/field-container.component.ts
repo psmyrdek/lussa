@@ -19,7 +19,9 @@ export class FieldContainerComponent implements OnInit {
       .pipe(select(selectCurrentPlayer))
       .subscribe(
         (player: Player) => {
-          this.columnsModel = player.columns
+          if (player) {
+            this.columnsModel = player.columns
+          }
         }
       )
   }

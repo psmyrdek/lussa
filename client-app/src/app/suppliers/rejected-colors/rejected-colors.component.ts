@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Color } from 'src/app/_models/ColorEnum';
 import { AppState } from 'src/app/_app-state/state';
 import { Store, select } from '@ngrx/store';
-import { TakeFromRejectedColorsAction } from 'src/app/_app-state/actions/player.actions';
+// import { TakeFromRejectedColorsAction } from 'src/app/_app-state/actions/player.actions';
 
 @Component({
   selector: 'app-rejected-colors',
@@ -24,7 +24,7 @@ export class RejectedColorsComponent {
   }
 
   takeAll(colorToTake: Color) {
-    this.store.dispatch(new TakeFromRejectedColorsAction({ color: colorToTake }));
+    // this.store.dispatch(new TakeFromRejectedColorsAction({ color: colorToTake }));
   }
 
 }

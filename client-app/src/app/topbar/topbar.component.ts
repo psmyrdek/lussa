@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../_app-state/state';
-import { GamesService } from '../_services/games.service';
-import { ActivatedRoute } from '@angular/router';
-import { InitStateAction } from '../_app-state/actions/app.actions';
-import { MarkReadinessAction } from '../_app-state/actions/player.actions';
+import { AddPlayerAction, MarkReadinessAction } from '../_app-state/actions/game.actions';
+import { v4 as uuidv4 } from 'uuid'
 
 @Component({
   selector: 'app-topbar',
@@ -16,45 +14,37 @@ export class TopbarComponent implements OnInit {
   canJoin: boolean = true;
   canMarkReady: boolean = false;
 
+  playerId: string = uuidv4();
   playerColor: string = '';
 
   constructor(
-    private store: Store<AppState>,
-    private gamesService: GamesService,
-    private route: ActivatedRoute,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
     this.store.pipe(select('app'))
       .subscribe((state: AppState) => {
 
-        if (!this.playerColor && state.isGameLoaded) {
-          this.updatePlayerColor(state)
-        }
-
         const player = state.players.find(x => x.id === state.playerId)
 
-        this.canJoin = !state.isGameLoaded;
-        this.canMarkReady = state.isGameLoaded && !player.isReady;
+        this.canJoin = !player;
+
+        if (player) {
+          this.canMarkReady = state.playerId && !player.isReady;
+
+          if (!this.playerColor) {
+            this.updatePlayerColor(state)
+          }
+        }
       })
   }
 
   joinGame() {
-    const gameId = this.route.snapshot.paramMap.get('gameId');
-
-    this.gamesService.joinGame(gameId)
-      .subscribe(
-        (state: AppState) => {
-          this.store.dispatch(new InitStateAction({ state }));
-        },
-        (err) => {
-          alert(`Cannot join ${gameId}`)
-        }
-      )
+    this.store.dispatch(new AddPlayerAction({ playerId: this.playerId }));
   }
 
   markReady() {
-    this.store.dispatch(new MarkReadinessAction())
+    this.store.dispatch(new MarkReadinessAction({ playerId: this.playerId }))
   }
 
   updatePlayerColor(state: AppState) {

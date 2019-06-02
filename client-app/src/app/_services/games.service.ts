@@ -13,8 +13,4 @@ export class GamesService {
         return this.http.post<GameMetadata>(`/api/game`, {})
     }
 
-    joinGame(gameId: string): Observable<AppState> {
-        return this.http.post<AppState>(`/api/game/${gameId}/join`, {})
-    }
-
 }

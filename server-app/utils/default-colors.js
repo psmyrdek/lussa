@@ -1,6 +1,6 @@
 const {Color} = require('../models/color.js')
 
-module.exports.defaultColors = [
+module.exports.getDefaultColors = () => [
     Color.Orange,
     Color.Orange,
     Color.Orange,

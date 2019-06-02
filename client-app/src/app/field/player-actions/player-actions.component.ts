@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/_app-state/state';
-import { canSkipTurnAction } from 'src/app/_app-state/selectors/player-actions';
-import { SkipTurnAction } from 'src/app/_app-state/actions/player.actions';
+import { canSkipTurn } from 'src/app/_app-state/selectors/can-skip-turn';
+// import { SkipTurnAction } from 'src/app/_app-state/actions/player.actions';
 
 @Component({
   selector: 'app-player-actions',
@@ -15,7 +15,7 @@ export class PlayerActionsComponent {
 
   constructor(private store: Store<AppState>) {
     this.store
-      .pipe(select(canSkipTurnAction))
+      .pipe(select(canSkipTurn))
       .subscribe(
         (canSkipTurn: boolean) => {
           this.canSkipTurn = canSkipTurn;
@@ -24,7 +24,7 @@ export class PlayerActionsComponent {
   }
 
   skipTurn() {
-    this.store.dispatch(new SkipTurnAction());
+    // this.store.dispatch(new SkipTurnAction());
   }
 
 }

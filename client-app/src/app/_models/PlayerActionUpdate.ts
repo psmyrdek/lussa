@@ -1,13 +1,10 @@
-import { Supplier } from './Supplier';
 import { Color } from './ColorEnum';
 import { Player } from './Player';
+import { Supplier } from './Supplier';
 
-export interface StateUpdate {
-    roundNo: number;
+export interface PlayerActionUpdate {
     suppliers: Supplier[];
-    colors: Color[];
     rejectedSupplierColors: Color[];
     brokenColors: Color[];
-    players: Player[];
-    playerTurnIndex: number;
+    player: Player;
 }

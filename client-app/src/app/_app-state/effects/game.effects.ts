@@ -1,34 +1,45 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
-import { MessagingService } from 'src/app/_services/messaging.service';
 import { withLatestFrom, tap } from 'rxjs/operators'
-import { AppActionTypes, InitStateAction } from '../actions/app.actions';
 import { AppState } from '../state';
 import { Store } from '@ngrx/store';
-import { PlayerActionTypes } from '../actions/player.actions';
+import { MessagingService } from 'src/app/_services/messaging.service';
+import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, ColorTakenFromSupplierAction } from '../actions/game.actions';
 
 @Injectable({ providedIn: 'root' })
 export class GameEffects {
 
     @Effect({ dispatch: false })
     $joiners = this.actions$.pipe(
-        ofType(AppActionTypes.InitState),
+        ofType(GameActionTypes.AddPlayer),
         withLatestFrom(this.store.select('app')),
-        tap(([action, state]: [InitStateAction, AppState]) => {
-            this.messaging.emitJoin({gameId: state.gameId});
+        tap(([action, state]: [AddPlayerAction, AppState]) => {
+            this.messaging.emitAction({gameId: state.gameId, action})
         })
     )
 
     @Effect({ dispatch: false })
     $readiness = this.actions$.pipe(
-        ofType(PlayerActionTypes.MarkReadiness),
+        ofType(GameActionTypes.MarkReadiness),
         withLatestFrom(this.store.select('app')),
-        tap(([action, state]: [InitStateAction, AppState]) => {
-            const player = state.players.find(x => x.id === state.playerId)
-            this.messaging.emitReady({
-                gameId: state.gameId,
-                playerId: player.id
-            });
+        tap(([action, state]: [MarkReadinessAction, AppState]) => {
+            this.messaging.emitAction({gameId: state.gameId, action})
+        })
+    )
+
+    @Effect({ dispatch: false })
+    $columnActions = this.actions$.pipe(
+        ofType(GameActionTypes.TakeFromSupplier),
+        withLatestFrom(this.store.select('app')),
+        tap(([action, state]: [TakeFromSupplierAction, AppState]) => {
+
+            const actionToEmit = new ColorTakenFromSupplierAction({
+                playerId: state.playerId,
+                color: action.payload.color,
+                supplierId: action.payload.supplierId
+            })
+
+            this.messaging.emitAction({gameId: state.gameId, action: actionToEmit});
         })
     )
 
