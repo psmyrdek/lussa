@@ -4,13 +4,13 @@ import { withLatestFrom, tap } from 'rxjs/operators'
 import { AppState } from '../state';
 import { Store } from '@ngrx/store';
 import { MessagingService } from 'src/app/_services/messaging.service';
-import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, ColorTakenFromSupplierAction } from '../actions/game.actions';
+import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, ColorTakenFromSupplierAction, FillColumnAction, ColumnFilledAction } from '../actions/game.actions';
 
 @Injectable({ providedIn: 'root' })
 export class GameEffects {
 
     @Effect({ dispatch: false })
-    $joiners = this.actions$.pipe(
+    addPlayer = this.actions$.pipe(
         ofType(GameActionTypes.AddPlayer),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [AddPlayerAction, AppState]) => {
@@ -19,7 +19,7 @@ export class GameEffects {
     )
 
     @Effect({ dispatch: false })
-    $readiness = this.actions$.pipe(
+    markReadiness = this.actions$.pipe(
         ofType(GameActionTypes.MarkReadiness),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [MarkReadinessAction, AppState]) => {
@@ -28,7 +28,7 @@ export class GameEffects {
     )
 
     @Effect({ dispatch: false })
-    $columnActions = this.actions$.pipe(
+    takeFromSupplier = this.actions$.pipe(
         ofType(GameActionTypes.TakeFromSupplier),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [TakeFromSupplierAction, AppState]) => {
@@ -40,6 +40,23 @@ export class GameEffects {
             })
 
             this.messaging.emitAction({gameId: state.gameId, action: actionToEmit});
+        })
+    )
+
+    @Effect({ dispatch: false })
+    fillColumn = this.actions$.pipe(
+        ofType(GameActionTypes.FillColumn),
+        withLatestFrom(this.store.select('app')),
+        tap(([action, state]: [FillColumnAction, AppState]) => {
+
+            const actionToEmit = new ColumnFilledAction({
+                playerId: state.playerId,
+                columnId: action.payload.columnId,
+                fillJokers: action.payload.fillJokers
+            })
+
+            this.messaging.emitAction({gameId: state.gameId, action: actionToEmit});
+            
         })
     )
 

@@ -3,5 +3,6 @@ module.exports.actions = {
     updateGameState: 'updateGameState',
     addPlayer: 'addPlayer',
     markReadiness: 'markReadiness',
-    colorTakenFromSupplier: 'colorTakenFromSupplier'
+    colorTakenFromSupplier: 'colorTakenFromSupplier',
+    columnFilled: 'columnFilled'
 }

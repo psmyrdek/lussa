@@ -6,13 +6,17 @@ const { getBonusColors } = require('../utils/get-bonus-colors');
 const { generatePlayer } = require('../utils/generate-player');
 const { createSuppliers } = require('../utils/create-suppliers');
 const { getSupplierColors } = require('../utils/get-supplier-colors.js');
+const { getUpdatedColumn } = require('../utils/get-updated-column');
+const { calcTurnPenalty, updateScoreSteps } = require('../utils/broken-stones');
+
+const { ColumnVariantEnum } = require('../models/column-variant-enum');
 
 function initGame(gameId) {
-    
+
     const gameState = state();
-    
+
     const [bonusColors, remainingColors] = getBonusColors(getDefaultColors());
-    
+
     gameState.gameId = gameId;
     gameState.colors = remainingColors;
     gameState.bonusColors = bonusColors;
@@ -65,7 +69,7 @@ function gameStateReducer(state, action) {
             player.isReady = true;
 
             if (state.players.every(player => player.isReady)) {
-                startNewRound(state);``
+                startNewRound(state); ``
             }
 
             return state;
@@ -91,6 +95,64 @@ function gameStateReducer(state, action) {
             state.suppliers = filteredSuppliers
             state.rejectedSupplierColors = [...state.rejectedSupplierColors, ...rejectedSupplierColors]
             state.players[playerIndex].turnColors = playerTurnColors;
+
+            return state;
+        }
+        case actions.columnFilled: {
+
+            const actionPayload = action.payload;
+
+            const player = state.players.find(p => p.id === actionPayload.playerId);
+            const playerIndex = state.players.findIndex(p => p.id === actionPayload.playerId);
+
+            const colorsInHand = state.players[playerIndex].turnColors;
+
+            const columnId = actionPayload.columnId;
+
+            // Block picking disabled column
+            const column = player.columns.find(c => c.id === columnId)
+            if (column.isDisabled || column.isColumnCompleted) {
+                return state;
+            }
+
+            // Update variant and colors to break
+            const variant = column.activeVariant === ColumnVariantEnum.A
+                ? column.variantA : column.variantB;
+
+            const toBreak = [];
+            colorsInHand.forEach(color => {
+                const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
+                if (toFill) {
+                    toFill.isFilled = true;
+                } else {
+                    toBreak.push(color)
+                }
+            });
+
+            // Empty player turn colors
+            player.turnColors = [];
+
+            // Update column
+            player.columns = player.columns.map((column, index) => getUpdatedColumn(column, {
+                columnIndex: columnId
+            }))
+
+            // Add scores from column
+            if (variant.fields.every(f => f.isFilled)) {
+                player.score += player.columns
+                    .filter(c => c.id >= columnId && c.isVariantCompleted)
+                    .reduce((prev, current) => {
+                        return prev + current.value;
+                    }, 0);
+            }
+
+            // Update broken stones penalty
+            player.score += calcTurnPenalty(toBreak.length, player.scoreSteps);
+            player.scoreSteps = updateScoreSteps(toBreak.length, player.scoreSteps);
+
+            state.players[playerIndex] = player;
+            state.brokenColors = [...state.brokenColors, ...toBreak];
+            state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
 
             return state;
         }

@@ -20,6 +20,7 @@ module.exports.initWs = server => {
         socket.on(actions.addPlayer, actionHandler(socket));
         socket.on(actions.markReadiness, actionHandler(socket));
         socket.on(actions.colorTakenFromSupplier, actionHandler(socket));
+        socket.on(actions.columnFilled, actionHandler(socket));
 
     })
 }

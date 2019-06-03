@@ -1,0 +1,1 @@
+module.exports.getCurrentPlayer = (state) => state.players.find(p => p.id === state.playerId)
