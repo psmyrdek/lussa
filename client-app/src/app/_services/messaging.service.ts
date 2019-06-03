@@ -27,7 +27,7 @@ export class MessagingService {
     }
 
     emitAction(gameAction: GameAction) {
-        this.gameSocket.emit(gameAction.action.type, gameAction.action)
+        this.gameSocket.emit(gameAction.action.type, gameAction)
     }
 
 }

@@ -65,34 +65,34 @@ function gameStateReducer(state, action) {
             player.isReady = true;
 
             if (state.players.every(player => player.isReady)) {
-                startNewRound(state);
+                startNewRound(state);``
             }
 
             return state;
         }
         case actions.colorTakenFromSupplier: {
-            //     const actionPayload = (action as TakeFromSupplierAction).payload;
-            //     let playerTurnColors: Color[] = [];
-            //     let rejectedSupplierColors: Color[] = [];
 
-            //     const filteredSuppliers = state.suppliers.map((supplier) => {
-            //         if (supplier.id !== actionPayload.supplierId) {
-            //             return supplier;
-            //         } else {
-            //             playerTurnColors = supplier.colors.filter(c => c === actionPayload.color)
-            //             rejectedSupplierColors = supplier.colors.filter(c => c !== actionPayload.color)
+            const playerIndex = state.players.findIndex(p => p.id === action.payload.playerId);
 
-            //             return { ...supplier, colors: [] }
-            //         }
-            //     });
+            let playerTurnColors = [];
+            let rejectedSupplierColors = [];
 
-            //     return {
-            //         ...state,
-            //         suppliers: filteredSuppliers,
-            //         playerTurnColors,
-            //         rejectedSupplierColors: [...state.rejectedSupplierColors, ...rejectedSupplierColors]
-            //     }
+            const filteredSuppliers = state.suppliers.map((supplier) => {
+                if (supplier.id !== action.payload.supplierId) {
+                    return supplier;
+                } else {
+                    playerTurnColors = supplier.colors.filter(c => c === action.payload.color)
+                    rejectedSupplierColors = supplier.colors.filter(c => c !== action.payload.color)
 
+                    return { ...supplier, colors: [] }
+                }
+            });
+
+            state.suppliers = filteredSuppliers
+            state.rejectedSupplierColors = [...state.rejectedSupplierColors, ...rejectedSupplierColors]
+            state.players[playerIndex].turnColors = playerTurnColors;
+
+            return state;
         }
         default:
             return state;

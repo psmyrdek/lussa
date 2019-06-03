@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/_models/ColorEnum';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/_app-state/state';
-import { getCurrentPlayer } from 'src/app/_app-state/utils/get-current-player';
 import { Player } from 'src/app/_models/Player';
+import { selectCurrentPlayer } from 'src/app/_app-state/selectors/current-player';
 
 @Component({
   selector: 'app-player-hand',
@@ -16,10 +16,12 @@ export class PlayerHandComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     this.store
-      .pipe(select(getCurrentPlayer))
+      .pipe(select(selectCurrentPlayer))
       .subscribe(
         (player: Player) => {
-          this.colors = player.turnColors;
+          if (player) {
+            this.colors = player.turnColors;
+          }
         }
       )
   }
