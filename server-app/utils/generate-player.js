@@ -2,7 +2,7 @@ const {getRandomInt} = require('./get-random-int')
 const {Color} = require('../models/color.js')
 const {ColumnVariantEnum} = require('../models/column-variant-enum.js')
 
-const variantPairs = [
+const getVariantPairs = () => [
     [
         {
             fields: [
@@ -166,6 +166,8 @@ const variantPairs = [
 ]
 
 function generateColumns() {
+
+    const variantPairs = getVariantPairs()
 
     const values = [4, 3, 3, 2, 2, 1, 1, 2];
     const indexesTaken = [];
