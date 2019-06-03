@@ -9,6 +9,8 @@ export enum GameActionTypes {
     MarkReadiness = 'markReadiness',
     TakeFromSupplier = 'takeFromSupplier',
     FillColumn = 'fillColumn',
+    SkipTurn = 'skipTurn',
+    TakeFromRejectedColors = 'takeFromRejectedColors'
 }
 
 export class AddPlayerAction implements Action {
@@ -45,4 +47,14 @@ export class FillColumnAction implements Action {
     readonly type = GameActionTypes.FillColumn;
 
     constructor(public payload: { columnId: number, fillJokers: boolean }) { }
+}
+
+export class TakeFromRejectedColorsAction implements Action {
+    readonly type = GameActionTypes.TakeFromRejectedColors;
+
+    constructor(public payload: { color: Color }) { }
+}
+
+export class SkipTurnAction implements Action {
+    readonly type = GameActionTypes.SkipTurn;
 }

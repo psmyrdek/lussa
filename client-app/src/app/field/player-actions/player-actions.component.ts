@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from 'src/app/_app-state/state';
 import { canSkipTurn } from 'src/app/_app-state/selectors/can-skip-turn';
-// import { SkipTurnAction } from 'src/app/_app-state/actions/player.actions';
+import { SkipTurnAction } from 'src/app/_app-state/actions/game.actions';
 
 @Component({
   selector: 'app-player-actions',
@@ -24,7 +24,7 @@ export class PlayerActionsComponent {
   }
 
   skipTurn() {
-    // this.store.dispatch(new SkipTurnAction());
+    this.store.dispatch(new SkipTurnAction());
   }
 
 }

@@ -4,5 +4,7 @@ module.exports.actions = {
     addPlayer: 'addPlayer',
     markReadiness: 'markReadiness',
     takeFromSupplier: 'takeFromSupplier',
-    fillColumn: 'fillColumn'
+    fillColumn: 'fillColumn',
+    skipTurn: 'skipTurn',
+    takeFromRejectedColors: 'takeFromRejectedColors'
 }

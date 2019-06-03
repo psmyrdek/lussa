@@ -4,7 +4,7 @@ import { withLatestFrom, tap } from 'rxjs/operators'
 import { AppState } from '../state';
 import { Store } from '@ngrx/store';
 import { MessagingService } from 'src/app/_services/messaging.service';
-import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, FillColumnAction } from '../actions/game.actions';
+import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, FillColumnAction, SkipTurnAction, TakeFromRejectedColorsAction } from '../actions/game.actions';
 import { GameAction } from 'src/app/_models/GameAction';
 
 @Injectable({ providedIn: 'root' })
@@ -42,6 +42,24 @@ export class GameEffects {
         ofType(GameActionTypes.FillColumn),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [FillColumnAction, AppState]) => {
+            this.messaging.emitAction(new GameAction(action, state));
+        })
+    )
+
+    @Effect({ dispatch: false })
+    takeFromRejectedColorsAction = this.actions$.pipe(
+        ofType(GameActionTypes.TakeFromRejectedColors),
+        withLatestFrom(this.store.select('app')),
+        tap(([action, state]: [TakeFromRejectedColorsAction, AppState]) => {
+            this.messaging.emitAction(new GameAction(action, state));
+        })
+    )
+
+    @Effect({ dispatch: false })
+    skipTurn = this.actions$.pipe(
+        ofType(GameActionTypes.SkipTurn),
+        withLatestFrom(this.store.select('app')),
+        tap(([action, state]: [SkipTurnAction, AppState]) => {
             this.messaging.emitAction(new GameAction(action, state));
         })
     )

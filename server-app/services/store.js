@@ -74,7 +74,7 @@ function gameStateReducer(state, action) {
 
             return state;
         }
-        case actions.colorTakenFromSupplier: {
+        case actions.takeFromSupplier: {
 
             const playerIndex = state.players.findIndex(p => p.id === action.payload.playerId);
 
@@ -98,7 +98,7 @@ function gameStateReducer(state, action) {
 
             return state;
         }
-        case actions.columnFilled: {
+        case actions.fillColumn: {
 
             const actionPayload = action.payload;
 
@@ -152,6 +152,33 @@ function gameStateReducer(state, action) {
 
             state.brokenColors = [...state.brokenColors, ...toBreak];
             state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
+
+            return state;
+        }
+        case actions.skipTurn: {
+
+            const actionPayload = action.payload;
+
+            const player = state.players.find(p => p.id === actionPayload.playerId);
+
+            player.columns.forEach(column => {
+                column.isDisabled = false;
+            })
+
+            state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
+
+            return state;
+        }
+        case actions.takeFromRejectedColors: {
+
+            const actionPayload = action.payload;
+            const player = state.players.find(p => p.id === actionPayload.playerId);
+
+            const playerTurnColors = state.rejectedSupplierColors.filter(c => c === actionPayload.color);
+            const rejectedSupplierColors = state.rejectedSupplierColors.filter(c => c !== actionPayload.color);
+
+            player.turnColors = playerTurnColors;
+            state.rejectedSupplierColors = rejectedSupplierColors;
 
             return state;
         }

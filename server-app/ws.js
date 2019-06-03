@@ -32,6 +32,8 @@ module.exports.initWs = server => {
         socket.on(actions.markReadiness, actionHandler);
         socket.on(actions.takeFromSupplier, actionHandler);
         socket.on(actions.fillColumn, actionHandler);
+        socket.on(actions.skipTurn, actionHandler);
+        socket.on(actions.takeFromRejectedColors, actionHandler);
 
-    })
+    });
 }
