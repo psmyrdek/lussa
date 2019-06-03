@@ -35,8 +35,23 @@ function startNewRound(state) {
         return { ...supplier, colors: toGet }
     })
 
+    state.playerTurnIndex = 0; // fix
     state.colors = availableColors;
     state.suppliers = filledSuppliers;
+}
+
+function checkEndRound(state) {
+
+    if (state.rejectedSupplierColors.length > 0) {
+        return false;
+    }
+
+    if (state.suppliers.some(s => s.colors.length > 0)) {
+        return false;
+    }
+
+    return true;
+
 }
 
 function globalReducer(state, action) {
@@ -151,7 +166,12 @@ function gameStateReducer(state, action) {
             player.scoreSteps = updateScoreSteps(toBreak.length, player.scoreSteps);
 
             state.brokenColors = [...state.brokenColors, ...toBreak];
-            state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
+
+            if (checkEndRound(state)) {
+                startNewRound(state);
+            } else {
+                state.playerTurnIndex = ++state.playerTurnIndex % state.players.length;
+            }
 
             return state;
         }
@@ -165,7 +185,11 @@ function gameStateReducer(state, action) {
                 column.isDisabled = false;
             })
 
-            state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
+            if (checkEndRound(state)) {
+                startNewRound(state);
+            } else {
+                state.playerTurnIndex = ++state.playerTurnIndex % state.players.length;
+            }
 
             return state;
         }
