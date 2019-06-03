@@ -13,6 +13,7 @@ import { Player } from 'src/app/_models/Player';
 export class FieldContainerComponent implements OnInit {
 
   columnsModel: Column[];
+  showActions: boolean = false;
 
   constructor(private store: Store<AppState>) {
     this.store
@@ -21,6 +22,7 @@ export class FieldContainerComponent implements OnInit {
         (player: Player) => {
           if (player) {
             this.columnsModel = player.columns
+            this.showActions = Boolean(player);
           }
         }
       )

@@ -24,6 +24,9 @@ export class PlayerActionsComponent {
   }
 
   skipTurn() {
+    if (!this.canSkipTurn) {
+      return;
+    }
     this.store.dispatch(new SkipTurnAction());
   }
 

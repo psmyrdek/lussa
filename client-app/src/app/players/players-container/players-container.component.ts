@@ -11,7 +11,7 @@ import { AppState } from 'src/app/_app-state/state';
 })
 export class PlayersContainerComponent implements OnInit {
 
-  players: Player[];
+  players: Player[] = [];
 
   constructor(private store: Store<AppState>) {
     this.store

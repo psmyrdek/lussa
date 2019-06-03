@@ -1,9 +1,8 @@
-<div class="field-container">
+<div class="flex flex-row">
     <app-player-hand></app-player-hand>
-    <div class="field">
-        <div class="columns-container">
-            <app-columns [columns]="columnsModel"></app-columns>
-        </div>
+    <div class="columns-container">
+        <app-columns [columns]="columnsModel"></app-columns>
     </div>
-    <app-player-actions></app-player-actions>
+    <app-player-actions *ngIf="showActions"></app-player-actions>
+    <app-players-container></app-players-container>
 </div>

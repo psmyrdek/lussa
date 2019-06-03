@@ -1,7 +1,4 @@
 <div class="column" (click)="fillColumn()">
-  <div class="column-indicator">
-    <div class="indicator"></div>
-  </div>
   <div class="fields-group"
     [ngClass]="{'fields-group--hidden': column.isColumnCompleted, 'fields-group--disabled': !column.isColumnCompleted && column.isDisabled}">
     <div *ngFor="let field of variant.fields"
@@ -15,5 +12,8 @@
       <i class="fas fa-check-square"></i>
     </div>
     <div class="column-value">{{ column.value }}</div>
+  </div>
+  <div class="column-indicator">
+    <div class="indicator"></div>
   </div>
 </div>

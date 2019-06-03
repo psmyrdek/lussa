@@ -1,7 +1,13 @@
 .players-container {
-    background: #634b46;
-    overflow-y: auto;
-    height: 100%;
-    box-shadow: -5px 0px 5px rgba(0,0,0,0.5);
-    padding: 10px;
+    border-left: 3px solid #2b1d1ad6;
+}
+
+.players-icon {
+    color: white;
+    font-size: 26px;
+    margin: 0 10px;
+}
+
+.player-container {
+    margin-right: 30px;
 }
