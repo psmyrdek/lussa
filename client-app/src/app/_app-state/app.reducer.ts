@@ -54,63 +54,7 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
         //     }
         // }
 
-        // case PlayerActionTypes.FillColumn: {
-
-        //     const actionPayload = (action as FillColumnAction).payload;
-        //     const colorsInHand = state.playerTurnColors;
-        //     const columnId = actionPayload.columnId;
-
-        //     // Get player
-        //     const player = getCurrentPlayer(state);
-
-        //     // Block picking disabled column
-        //     const column: Column = player.columns.find(c => c.id === columnId)
-        //     if (column.isDisabled || column.isColumnCompleted) {
-        //         return { ...state };
-        //     }
-
-        //     // Update variant and colors to break
-        //     const variant = column.activeVariant === ColumnVariantEnum.A
-        //         ? column.variantA : column.variantB;
-
-        //     const toBreak: Color[] = [];
-        //     colorsInHand.forEach(color => {
-        //         const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
-        //         if (toFill) {
-        //             toFill.isFilled = true;
-        //         } else {
-        //             toBreak.push(color)
-        //         }
-        //     });
-
-        //     // Empty player turn colors
-        //     state.playerTurnColors = [];
-
-        //     // Update column
-        //     player.columns = player.columns.map((column, index) => getUpdatedColumn(column, {
-        //         columnIndex: columnId
-        //     }))
-
-        //     // Add scores from column
-        //     if (variant.fields.every(f => f.isFilled)) {
-        //         player.score += player.columns
-        //             .filter(c => c.id >= columnId && c.isVariantCompleted)
-        //             .reduce((prev, current) => {
-        //                 return prev + current.value;
-        //             }, 0);
-        //     }
-
-        //     // Update broken stones penalty
-        //     player.score += calcTurnPenalty(toBreak.length, player.scoreSteps);
-        //     player.scoreSteps = updateScoreSteps(toBreak.length, player.scoreSteps);
-
-        //     return {
-        //         ...state,
-        //         brokenColors: [...state.brokenColors, ...toBreak],
-        //         players: updatePlayer(state, player)
-        //     }
-
-        // }
+        
         // case PlayerActionTypes.SkipTurn: {
 
         //     const player = getCurrentPlayer(state);

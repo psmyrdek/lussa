@@ -8,9 +8,7 @@ export enum GameActionTypes {
     UpdateGameState = 'updateGameState',
     MarkReadiness = 'markReadiness',
     TakeFromSupplier = 'takeFromSupplier',
-    ColorTakenFromSupplier = 'colorTakenFromSupplier',
     FillColumn = 'fillColumn',
-    ColumnFilled = 'columnFilled'
 }
 
 export class AddPlayerAction implements Action {
@@ -43,20 +41,8 @@ export class TakeFromSupplierAction implements Action {
     constructor(public payload: { color: Color, supplierId: number }) { }
 }
 
-export class ColorTakenFromSupplierAction implements Action {
-    readonly type = GameActionTypes.ColorTakenFromSupplier;
-
-    constructor(public payload: { playerId: string, color: Color, supplierId: number }) { }
-}
-
 export class FillColumnAction implements Action {
     readonly type = GameActionTypes.FillColumn;
 
     constructor(public payload: { columnId: number, fillJokers: boolean }) { }
-}
-
-export class ColumnFilledAction implements Action {
-    readonly type = GameActionTypes.ColumnFilled;
-
-    constructor(public payload: { playerId: string, columnId: number, fillJokers: boolean }) { }
 }

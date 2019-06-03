@@ -150,7 +150,6 @@ function gameStateReducer(state, action) {
             player.score += calcTurnPenalty(toBreak.length, player.scoreSteps);
             player.scoreSteps = updateScoreSteps(toBreak.length, player.scoreSteps);
 
-            state.players[playerIndex] = player;
             state.brokenColors = [...state.brokenColors, ...toBreak];
             state.playerTurnIndex = ++state.playerTurnIndex % state.players.length; 
 

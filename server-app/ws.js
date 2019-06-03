@@ -2,9 +2,20 @@ const {dispatchGameAction, getGameState} = require('./services/state.service')
 
 const {actions} = require('./services/actions');
 
-const actionHandler = (socket) => ({gameId, action}) => {
-    dispatchGameAction(gameId, action);
-    io.in(gameId).emit(actions.updateGameState, getGameState(gameId));
+const unwrap = (gameAction) => {
+    const action = gameAction.action;
+    action.payload = Object.assign({}, {
+        gameId: gameAction.gameId,
+        playerId: gameAction.playerId
+    }, (gameAction.action.payload || {}))
+
+    return action;
+};
+
+const actionHandler = (gameAction) => {
+    const action = unwrap(gameAction)
+    dispatchGameAction(gameAction.gameId, action);
+    io.in(gameAction.gameId).emit(actions.updateGameState, getGameState(gameAction.gameId));
 }
 
 module.exports.initWs = server => {
@@ -13,14 +24,14 @@ module.exports.initWs = server => {
     io.on('connection', (socket) => {
         console.log('Client connected');
 
-        socket.on(actions.addPlayer, ({gameId, action}) => {
-            socket.join(gameId);
+        socket.on(actions.addPlayer, (gameAction) => {
+            socket.join(gameAction.gameId);
         });
         
-        socket.on(actions.addPlayer, actionHandler(socket));
-        socket.on(actions.markReadiness, actionHandler(socket));
-        socket.on(actions.colorTakenFromSupplier, actionHandler(socket));
-        socket.on(actions.columnFilled, actionHandler(socket));
+        socket.on(actions.addPlayer, actionHandler);
+        socket.on(actions.markReadiness, actionHandler);
+        socket.on(actions.takeFromSupplier, actionHandler);
+        socket.on(actions.fillColumn, actionHandler);
 
     })
 }

@@ -4,7 +4,8 @@ import { withLatestFrom, tap } from 'rxjs/operators'
 import { AppState } from '../state';
 import { Store } from '@ngrx/store';
 import { MessagingService } from 'src/app/_services/messaging.service';
-import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, ColorTakenFromSupplierAction, FillColumnAction, ColumnFilledAction } from '../actions/game.actions';
+import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplierAction, FillColumnAction } from '../actions/game.actions';
+import { GameAction } from 'src/app/_models/GameAction';
 
 @Injectable({ providedIn: 'root' })
 export class GameEffects {
@@ -14,7 +15,7 @@ export class GameEffects {
         ofType(GameActionTypes.AddPlayer),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [AddPlayerAction, AppState]) => {
-            this.messaging.emitAction({gameId: state.gameId, action})
+            this.messaging.emitAction(new GameAction(action, state));
         })
     )
 
@@ -23,7 +24,7 @@ export class GameEffects {
         ofType(GameActionTypes.MarkReadiness),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [MarkReadinessAction, AppState]) => {
-            this.messaging.emitAction({gameId: state.gameId, action})
+            this.messaging.emitAction(new GameAction(action, state));
         })
     )
 
@@ -32,14 +33,7 @@ export class GameEffects {
         ofType(GameActionTypes.TakeFromSupplier),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [TakeFromSupplierAction, AppState]) => {
-
-            const actionToEmit = new ColorTakenFromSupplierAction({
-                playerId: state.playerId,
-                color: action.payload.color,
-                supplierId: action.payload.supplierId
-            })
-
-            this.messaging.emitAction({gameId: state.gameId, action: actionToEmit});
+            this.messaging.emitAction(new GameAction(action, state));
         })
     )
 
@@ -48,15 +42,7 @@ export class GameEffects {
         ofType(GameActionTypes.FillColumn),
         withLatestFrom(this.store.select('app')),
         tap(([action, state]: [FillColumnAction, AppState]) => {
-
-            const actionToEmit = new ColumnFilledAction({
-                playerId: state.playerId,
-                columnId: action.payload.columnId,
-                fillJokers: action.payload.fillJokers
-            })
-
-            this.messaging.emitAction({gameId: state.gameId, action: actionToEmit});
-            
+            this.messaging.emitAction(new GameAction(action, state));
         })
     )
 
