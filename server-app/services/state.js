@@ -1,4 +1,4 @@
-module.exports.state = () => ({
+module.exports.state = () => Object.assign({}, {
     gameId: '',
     suppliers: [],
     colors: [],
