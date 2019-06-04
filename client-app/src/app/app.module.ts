@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { EffectsModule } from '@ngrx/effects'
 import { GameEffects } from './_app-state/effects/game.effects';
 import { PlayerNavComponent } from './player-nav/player-nav.component';
+import { SoundEffects } from './_app-state/effects/sound.effects';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { PlayerNavComponent } from './player-nav/player-nav.component';
     AppRouterModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer }),
-    EffectsModule.forRoot([GameEffects]),
+    EffectsModule.forRoot([GameEffects, SoundEffects]),
     SocketIoModule.forRoot({
       url: '/',
       options: {}
