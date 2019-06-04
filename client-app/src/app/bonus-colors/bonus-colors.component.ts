@@ -17,7 +17,7 @@ export class BonusColorsComponent {
     this.store.pipe(select('app'))
       .subscribe((state: AppState) => {
         this.roundNo = state.roundNo;
-        if (this.roundNo > 0) {
+        if (this.roundNo > 1) {
           this.bonusColor = state.bonusColors[this.roundNo - 1];
         }
       })

@@ -1,11 +1,11 @@
 <div class="bonus-colors">
     <div class="round-marker">
 
-      <ng-container *ngIf="roundNo === 0">
+      <ng-container *ngIf="roundNo <= 1">
           <div class="stone empty-stone"></div>
       </ng-container>
 
-      <ng-container *ngIf="roundNo > 0">
+      <ng-container *ngIf="roundNo > 1">
           <div [ngClass]="'stone ' + bonusColor"></div>
       </ng-container>
 
