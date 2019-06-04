@@ -15,6 +15,22 @@ export class SoundEffects {
         })
     )
 
+    @Effect({ dispatch: false })
+    takeFromSupplier = this.actions$.pipe(
+        ofType(GameActionTypes.TakeFromSupplier),
+        tap((action: FillColumnAction) => {
+            this.soundService.play(action);
+        })
+    )
+
+    @Effect({ dispatch: false })
+    takeFromRejected = this.actions$.pipe(
+        ofType(GameActionTypes.TakeFromRejectedColors),
+        tap((action: FillColumnAction) => {
+            this.soundService.play(action);
+        })
+    )
+
     constructor(
         private actions$: Actions,
         private soundService: SoundService

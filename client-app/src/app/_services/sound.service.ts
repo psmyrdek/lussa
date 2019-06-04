@@ -10,7 +10,8 @@ export class SoundService {
 
     constructor() {
         this.sounds = {
-            fillColumn: { play: () => {} }
+            fillColumn: { play: () => {} },
+            take: { play: () => {} }
         }
         console.log(this.sounds);
     }
@@ -18,6 +19,9 @@ export class SoundService {
     loadSounds() {
         this.sounds.fillColumn = new Howl({
             src: [this.mapSrc('fill-column.mp3')]
+        });
+        this.sounds.take = new Howl({
+            src: [this.mapSrc('take.mp3')]
         })
     }
 
@@ -25,6 +29,12 @@ export class SoundService {
         switch (action.type) {
             case GameActionTypes.FillColumn:
                 this.sounds.fillColumn.play();
+                break;
+            case GameActionTypes.TakeFromSupplier:
+                this.sounds.take.play();
+                break;
+            case GameActionTypes.TakeFromRejectedColors:
+                this.sounds.take.play();
                 break;
             default:
                 break;
