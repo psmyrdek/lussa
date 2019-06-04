@@ -15,6 +15,7 @@ export class ColumnComponent implements OnInit {
 
   @Input() column: Column;
 
+  @Input() readOnly: boolean;
   variant: ColumnVariant;
 
   constructor(private store: Store<AppState>) { }
@@ -26,7 +27,9 @@ export class ColumnComponent implements OnInit {
   }
 
   fillColumn() {
-    this.store.dispatch(new FillColumnAction({ columnId: this.column.id, fillJokers: false }))
+    if (!this.readOnly) {
+      this.store.dispatch(new FillColumnAction({ columnId: this.column.id, fillJokers: false }))
+    }
   }
 
 }

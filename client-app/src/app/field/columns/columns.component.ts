@@ -10,6 +10,8 @@ export class ColumnsComponent implements OnInit {
 
   @Input() columns: Column[];
 
+  @Input() readOnly: boolean;
+
   constructor() { }
 
   ngOnInit() {

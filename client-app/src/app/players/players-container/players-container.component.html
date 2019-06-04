@@ -1,6 +1,6 @@
 <div class="players-container flex flex-row" *ngIf="players.length">
     <i class="fas fa-users players-icon"></i>
     <div class="columns-container player-container" *ngFor="let player of players">
-        <app-columns [columns]="player.columns"></app-columns>
+        <app-columns [columns]="player.columns" [readOnly]="true"></app-columns>
     </div>
 </div>
