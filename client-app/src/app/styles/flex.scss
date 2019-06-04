@@ -10,6 +10,10 @@
     flex-direction: column;
 }
 
-.justify-content-center {
+.flex-jc-center {
     justify-content: center;
+}
+
+.flex-ai-center {
+    align-items: center;
 }

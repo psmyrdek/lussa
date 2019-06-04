@@ -1,13 +1,15 @@
 <div class="bonus-colors">
     <div class="round-marker">
 
-      <ng-container *ngIf="roundNo <= 1">
-          <div class="stone empty-stone"></div>
-      </ng-container>
+        <div class="flex flex-row flex-ai-center" *ngIf="roundNo <= 1">
+            <span class="round-indicator">{{ roundNo }} / 6</span>
+            <div class="stone empty-stone"></div>
+        </div>
 
-      <ng-container *ngIf="roundNo > 1">
-          <div [ngClass]="'stone ' + bonusColor"></div>
-      </ng-container>
+        <div class="flex flex-row flex-ai-center" *ngIf="roundNo > 1">
+            <span class="round-indicator">{{ roundNo }} / 6</span>
+            <div [ngClass]="'stone ' + bonusColor"></div>
+        </div>
 
     </div>
 </div>
