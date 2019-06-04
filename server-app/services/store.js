@@ -35,6 +35,12 @@ function startNewRound(state) {
         return { ...supplier, colors: toGet }
     })
 
+    state.players.forEach(player => {
+        player.columns.forEach(column => {
+            column.isDisabled = false;
+        })
+    })
+
     state.playerTurnIndex = 0; // fix
     state.colors = availableColors;
     state.suppliers = filledSuppliers;
