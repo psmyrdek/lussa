@@ -1,10 +1,5 @@
 @import "../styles/stone-colors.map.scss";
 
-.bonus-colors-container {
-    display: flex;
-    flex-direction: row;
-}
-
 .stone {
     background-image: url('../../assets/images/tile-gradient.png');
     background-size: contain;
@@ -54,8 +49,4 @@
     background-color: map-get($stone-colors, "orange");
     border-left: 2px solid darken(map-get($stone-colors, "orange"), 20%);
     border-bottom: 2px solid darken(map-get($stone-colors, "orange"), 30%);
-}
-
-.round-marker--active {
-    border-bottom: 2px solid #40c1ec;
 }

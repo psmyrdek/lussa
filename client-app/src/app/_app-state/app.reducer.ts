@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { AppState, defaultAppState } from './state';
 import { GameActionTypes, SetupGameIdAction, AddPlayerAction, UpdateGameStateAction } from './actions/game.actions';
+import { v4 as uuidv4 } from 'uuid'
 
 export function appReducer(state: AppState = defaultAppState, action: Action): AppState {
     switch (action.type) {
@@ -15,11 +16,9 @@ export function appReducer(state: AppState = defaultAppState, action: Action): A
         }
         case GameActionTypes.AddPlayer: {
 
-            const actionPayload = (action as AddPlayerAction).payload;
-
             return {
                 ...state,
-                playerId: actionPayload.playerId
+                playerId: uuidv4()
             }
 
         }

@@ -23,6 +23,7 @@ import { ScoreSummaryComponent } from './score-summary/score-summary.component';
 import { HttpClientModule } from '@angular/common/http'
 import { EffectsModule } from '@ngrx/effects'
 import { GameEffects } from './_app-state/effects/game.effects';
+import { PlayerNavComponent } from './player-nav/player-nav.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { GameEffects } from './_app-state/effects/game.effects';
     HomeComponent,
     GameComponent,
     BonusColorsComponent,
-    ScoreSummaryComponent
+    ScoreSummaryComponent,
+    PlayerNavComponent
   ],
   imports: [
     BrowserModule,

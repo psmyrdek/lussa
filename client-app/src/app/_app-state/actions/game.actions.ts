@@ -15,8 +15,6 @@ export enum GameActionTypes {
 
 export class AddPlayerAction implements Action {
     readonly type = GameActionTypes.AddPlayer;
-
-    constructor(public payload: { playerId: string }) { }
 }
 
 export class SetupGameIdAction implements Action {
@@ -33,8 +31,6 @@ export class UpdateGameStateAction implements Action {
 
 export class MarkReadinessAction implements Action {
     readonly type = GameActionTypes.MarkReadiness;
-
-    constructor(public payload: { playerId: string }) { }
 }
 
 export class TakeFromSupplierAction implements Action {
