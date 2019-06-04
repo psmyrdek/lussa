@@ -1,6 +1,6 @@
 .player-nav {
     background: white;
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0;
     padding: 10px;
@@ -11,5 +11,6 @@
 .button-action {
     color: #333;
     border: 1px solid gray;
+    background: white;
     border-radius: 3px;
 }

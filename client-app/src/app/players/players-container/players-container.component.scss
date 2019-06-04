@@ -1,11 +1,12 @@
 .players-container {
     border-left: 3px solid #2b1d1ad6;
+    overflow-x: auto;
 }
 
 .players-icon {
     color: white;
     font-size: 26px;
-    margin: 0 10px;
+    margin: 0 7px;
 }
 
 .player-container {

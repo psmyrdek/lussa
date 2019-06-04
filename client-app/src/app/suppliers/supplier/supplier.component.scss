@@ -7,13 +7,15 @@ ul {
 }
 
 .supplier {
+    $size: 140px;
+
     background: white;
     box-shadow: 0 4px 3px rgba(0,0,0,0.5);
     border-radius: 50%;
     padding: 30px;
     margin: 10px;
-    width: 160px;
-    height: 160px;
+    width: $size;
+    height: $size;
     display: inline-block;
     background-image: url('../../../assets/images/papyrus.png');
 }
@@ -23,10 +25,10 @@ ul {
     background-size: contain;
     background-repeat: no-repeat;
     border: none;
-    $stone-size: 40px;
+    $stone-size: 30px;
     width: $stone-size;
     height: $stone-size;
-    border-radius: 10px;
+    border-radius: 5px;
     display: inline-block;
     margin: 5px;
     box-shadow: -4px 4px 2px rgba(0, 0, 0, 0.2);
