@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GameMetadata } from '../_models/GameMetadata';
-import { AppState } from '../_app-state/state';
 
 @Injectable({ providedIn: 'root' })
 export class GamesService {
