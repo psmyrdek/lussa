@@ -3,12 +3,12 @@
 
         <div class="flex flex-row flex-ai-center" *ngIf="roundNo <= 1">
             <span class="round-indicator">{{ roundNo }} / 6</span>
-            <div class="stone empty-stone"></div>
+            <div class="stone empty-stone" (click)="openPreview()"></div>
         </div>
 
         <div class="flex flex-row flex-ai-center" *ngIf="roundNo > 1">
             <span class="round-indicator">{{ roundNo }} / 6</span>
-            <div [ngClass]="'stone ' + bonusColor"></div>
+            <div (click)="openPreview()" [ngClass]="'stone ' + bonusColor"></div>
         </div>
 
     </div>

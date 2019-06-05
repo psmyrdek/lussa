@@ -1,5 +1,7 @@
 const { actions } = require('./actions');
 const { state } = require('./state');
+const { Color } = require('../models/color');
+const { ColumnVariantEnum } = require('../models/column-variant-enum');
 
 const { getDefaultColors } = require('../utils/default-colors');
 const { getBonusColors } = require('../utils/get-bonus-colors');
@@ -8,8 +10,6 @@ const { createSuppliers } = require('../utils/create-suppliers');
 const { getSupplierColors } = require('../utils/get-supplier-colors.js');
 const { getUpdatedColumn } = require('../utils/get-updated-column');
 const { calcTurnPenalty, updateScoreSteps } = require('../utils/broken-stones');
-
-const { ColumnVariantEnum } = require('../models/column-variant-enum');
 
 function initGame(gameId) {
 
@@ -142,12 +142,20 @@ function gameStateReducer(state, action) {
 
             const toBreak = [];
             colorsInHand.forEach(color => {
-                const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
-                if (toFill) {
-                    toFill.isFilled = true;
+
+                if (actionPayload.fillJokers) {
+                    const jokerIndex = variant.fields.findIndex(f => f.color === Color.Joker && !f.isFilled);
+                    variant.fields[jokerIndex].isFilled = true;
+                    variant.fields[jokerIndex].color = color;
                 } else {
-                    toBreak.push(color)
+                    const toFill = variant.fields.find(f => f.color === color && !f.isFilled)
+                    if (toFill) {
+                        toFill.isFilled = true;
+                    } else {
+                        toBreak.push(color)
+                    }
                 }
+
             });
 
             // Empty player turn colors

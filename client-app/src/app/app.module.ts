@@ -31,6 +31,7 @@ import { RejectedColorsWarningComponent } from './dialogs/rejected-colors-warnin
 import { MatButtonModule } from '@angular/material/button';
 import { ForeignColumnWarningComponent } from './dialogs/foreign-column-warning/foreign-column-warning.component';
 import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/joker-column-question.component';
+import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/preview-bonus-colors.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/jo
     PlayerNavComponent,
     RejectedColorsWarningComponent,
     ForeignColumnWarningComponent,
-    JokerColumnQuestionComponent
+    JokerColumnQuestionComponent,
+    PreviewBonusColorsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -73,7 +75,8 @@ import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/jo
   entryComponents: [
     RejectedColorsWarningComponent,
     ForeignColumnWarningComponent,
-    JokerColumnQuestionComponent
+    JokerColumnQuestionComponent,
+    PreviewBonusColorsComponent
   ],
   bootstrap: [AppComponent]
 })
