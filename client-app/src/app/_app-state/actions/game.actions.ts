@@ -5,6 +5,7 @@ import { Color } from 'src/app/_models/ColorEnum';
 export enum GameActionTypes {
     SetupGameId = 'setupGameId',
     AddPlayer = 'addPlayer',
+    GameStarted = 'gameStarted',
     UpdateGameState = 'updateGameState',
     MarkReadiness = 'markReadiness',
     TakeFromSupplier = 'takeFromSupplier',
@@ -53,4 +54,8 @@ export class TakeFromRejectedColorsAction implements Action {
 
 export class SkipTurnAction implements Action {
     readonly type = GameActionTypes.SkipTurn;
+}
+
+export class GameStartedAction implements Action {
+    readonly type = GameActionTypes.GameStarted;
 }

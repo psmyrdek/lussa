@@ -11,9 +11,9 @@ export class SoundService {
     constructor() {
         this.sounds = {
             fillColumn: { play: () => {} },
-            take: { play: () => {} }
+            take: { play: () => {} },
+            startGame: { play: () => {} }
         }
-        console.log(this.sounds);
     }
 
     loadSounds() {
@@ -22,6 +22,9 @@ export class SoundService {
         });
         this.sounds.take = new Howl({
             src: [this.mapSrc('take.mp3')]
+        });
+        this.sounds.startGame = new Howl({
+            src: [this.mapSrc('start.mp3')]
         })
     }
 
@@ -35,6 +38,9 @@ export class SoundService {
                 break;
             case GameActionTypes.TakeFromRejectedColors:
                 this.sounds.take.play();
+                break;
+            case GameActionTypes.GameStarted:
+                this.sounds.startGame.play();
                 break;
             default:
                 break;

@@ -17,10 +17,8 @@ export class GameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     const gameId = this.route.snapshot.paramMap.get('gameId');
-
-    this.store.dispatch(new SetupGameIdAction({gameId}));
+    this.store.dispatch(new SetupGameIdAction({ gameId }));
   }
 
 }

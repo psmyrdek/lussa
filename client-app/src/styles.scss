@@ -16,6 +16,8 @@ html {
     box-sizing: border-box;
 }
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 @import "./app/styles/flex.scss";
 @import "./app/styles/button.scss";
 @import "./app/styles/box.scss";

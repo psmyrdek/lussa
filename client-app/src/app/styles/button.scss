@@ -30,3 +30,10 @@
     background: #3323188f;
     color: #ffffff36;
 }
+
+button {
+    .button-text {
+        display: inline-block;
+        margin-left: 10px;
+    }
+}

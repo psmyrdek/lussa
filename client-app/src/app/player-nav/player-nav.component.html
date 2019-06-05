@@ -1,11 +1,11 @@
 <div *ngIf="canJoin || canMarkReady" class="player-nav">
   <div class="flex flex-row flex-jc-center">
-    <button *ngIf="canJoin" class="button button-action" (click)="joinGame()">
-      <i class="fas fa-user-plus"></i> Join
+    <button mat-raised-button color="primary" *ngIf="canJoin" (click)="joinGame()">
+        <i class="fas fa-user-plus"></i> <span class="button-text">Dołącz</span>
     </button>
 
-    <button *ngIf="canMarkReady" class="button button-action" (click)="markReady()">
-      <i class="fas fa-hand-paper"></i> Ready
+    <button mat-raised-button color="primary" *ngIf="canMarkReady" (click)="markReady()">
+        <i class="fa fa-hand-paper"></i> <span class="button-text">Gotowy</span>
     </button>
   </div>
 </div>

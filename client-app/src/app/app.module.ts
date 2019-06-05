@@ -25,6 +25,10 @@ import { EffectsModule } from '@ngrx/effects'
 import { GameEffects } from './_app-state/effects/game.effects';
 import { PlayerNavComponent } from './player-nav/player-nav.component';
 import { SoundEffects } from './_app-state/effects/sound.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RejectedColorsWarningComponent } from './dialogs/rejected-colors-warning/rejected-colors-warning.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,11 @@ import { SoundEffects } from './_app-state/effects/sound.effects';
     GameComponent,
     BonusColorsComponent,
     ScoreSummaryComponent,
-    PlayerNavComponent
+    PlayerNavComponent,
+    RejectedColorsWarningComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRouterModule,
     HttpClientModule,
@@ -55,9 +61,14 @@ import { SoundEffects } from './_app-state/effects/sound.effects';
     SocketIoModule.forRoot({
       url: '/',
       options: {}
-    })
+    }),
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
+  entryComponents: [
+    RejectedColorsWarningComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

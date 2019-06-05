@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { GameActionTypes, FillColumnAction } from '../actions/game.actions';
+import { GameActionTypes, FillColumnAction, GameStartedAction } from '../actions/game.actions';
 import { tap } from 'rxjs/operators';
 import { SoundService } from 'src/app/_services/sound.service';
 
@@ -27,6 +27,14 @@ export class SoundEffects {
     takeFromRejected = this.actions$.pipe(
         ofType(GameActionTypes.TakeFromRejectedColors),
         tap((action: FillColumnAction) => {
+            this.soundService.play(action);
+        })
+    )
+
+    @Effect({ dispatch: false })
+    start = this.actions$.pipe(
+        ofType(GameActionTypes.GameStarted),
+        tap((action: GameStartedAction) => {
             this.soundService.play(action);
         })
     )
