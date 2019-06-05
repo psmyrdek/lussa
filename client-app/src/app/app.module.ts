@@ -29,6 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RejectedColorsWarningComponent } from './dialogs/rejected-colors-warning/rejected-colors-warning.component';
 import { MatButtonModule } from '@angular/material/button';
+import { ForeignColumnWarningComponent } from './dialogs/foreign-column-warning/foreign-column-warning.component';
+import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/joker-column-question.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { MatButtonModule } from '@angular/material/button';
     BonusColorsComponent,
     ScoreSummaryComponent,
     PlayerNavComponent,
-    RejectedColorsWarningComponent
+    RejectedColorsWarningComponent,
+    ForeignColumnWarningComponent,
+    JokerColumnQuestionComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -67,7 +71,9 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   providers: [],
   entryComponents: [
-    RejectedColorsWarningComponent
+    RejectedColorsWarningComponent,
+    ForeignColumnWarningComponent,
+    JokerColumnQuestionComponent
   ],
   bootstrap: [AppComponent]
 })
