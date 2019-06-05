@@ -20,7 +20,7 @@ export class BonusColorsComponent {
       .subscribe((state: AppState) => {
         this.roundNo = state.roundNo;
         if (this.roundNo > 1) {
-          this.bonusColor = state.bonusColors[this.roundNo - 1];
+          this.bonusColor = state.bonusColors[this.roundNo - 2];
         }
       })
   }
