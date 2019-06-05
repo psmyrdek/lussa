@@ -17,14 +17,16 @@ export class RejectedColorsComponent {
 
   @ViewChild('warning', { static: true }) warningRef: ElementRef;
 
-  rejectedColors: Color[] = []
+  rejectedColors: Color[] = [];
+  isFirstStoneAvailable: boolean = true;
 
   constructor(private store: Store<AppState>, private dialog: MatDialog) {
     this.store
       .pipe(select('app'))
       .subscribe(
         (state: AppState) => {
-          this.rejectedColors = state.rejectedSupplierColors
+          this.rejectedColors = state.rejectedSupplierColors;
+          this.isFirstStoneAvailable = !Boolean(state.firstPlayerId)
         }
       )
   }

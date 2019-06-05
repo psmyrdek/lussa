@@ -33,10 +33,14 @@ function startNewRound(state) {
         const [toGet, toKeep] = getSupplierColors(availableColors);
         availableColors = toKeep
         return { ...supplier, colors: toGet }
-    })
+    });
 
+    state.playerTurnIndex = state.firstPlayerId !== null
+        ? state.players.findIndex(p => p.id === state.firstPlayerId)
+        : 0;
 
-    state.playerTurnIndex = 0; // fix
+    state.firstPlayerId = null;
+
     state.colors = availableColors;
     state.suppliers = filledSuppliers;
 }
@@ -209,6 +213,12 @@ function gameStateReducer(state, action) {
 
             const playerTurnColors = state.rejectedSupplierColors.filter(c => c === actionPayload.color);
             const rejectedSupplierColors = state.rejectedSupplierColors.filter(c => c !== actionPayload.color);
+
+            if (state.firstPlayerId === null) {
+                state.firstPlayerId = player.id;
+                player.score += calcTurnPenalty(1, player.scoreSteps);
+                player.scoreSteps = updateScoreSteps(1, player.scoreSteps);
+            }
 
             player.turnColors = playerTurnColors;
             state.rejectedSupplierColors = rejectedSupplierColors;

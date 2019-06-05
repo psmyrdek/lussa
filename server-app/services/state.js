@@ -7,5 +7,6 @@ module.exports.state = () => Object.assign({}, {
     bonusColors: [],
     players: [],
     roundNo: 0,
-    playerTurnIndex: 0
+    playerTurnIndex: 0,
+    firstPlayerId: null
 })

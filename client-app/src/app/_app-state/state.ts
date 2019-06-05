@@ -15,6 +15,7 @@ export interface AppState {
     players: Player[];
     roundNo: number;
     playerTurnIndex: number;
+    firstPlayerId: string | null;
 }
 
 export const defaultAppState: AppState = {
@@ -28,5 +29,6 @@ export const defaultAppState: AppState = {
     bonusColors: [],
     players: [],
     roundNo: 0,
-    playerTurnIndex: 0
+    playerTurnIndex: 0,
+    firstPlayerId: null
 }
