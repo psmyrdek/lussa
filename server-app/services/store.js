@@ -172,6 +172,14 @@ function gameStateReducer(state, action) {
                     .reduce((prev, current) => {
                         return prev + current.value;
                     }, 0);
+    
+        
+                const roundBonusColor = state.roundNo > 1 ? state.bonusColors[state.roundNo - 2] : null;
+                
+                if (roundBonusColor){
+                   const bonusInVariant = variant.fields.filter(f => f.color === roundBonusColor).length;
+                   player.score += bonusInVariant;
+                }
             }
 
             // Update broken stones penalty
