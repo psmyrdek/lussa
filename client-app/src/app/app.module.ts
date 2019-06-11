@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RejectedColorsWarningComponent } from './dialogs/rejected-colors-warning/rejected-colors-warning.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ForeignColumnWarningComponent } from './dialogs/foreign-column-warning/foreign-column-warning.component';
 import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/joker-column-question.component';
 import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/preview-bonus-colors.component';
@@ -73,9 +74,12 @@ import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/prev
       }
     }),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1000 } }
+  ],
   entryComponents: [
     RejectedColorsWarningComponent,
     ForeignColumnWarningComponent,
