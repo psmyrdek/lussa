@@ -26,24 +26,34 @@ function initGame(gameId) {
 
 function startNewRound(state) {
 
+    // Mark game started
     if (!state.gameStarted) {
         state.gameStarted = true;
     }
 
+    // Refill available colors from broken ones when empty
+    if (state.colors.length < state.suppliers.length * 4) {
+        state.colors = [...state.colors, ...state.brokenColors];
+        state.brokenColors = [];
+    }
+
+    // Increase round no indicator
     state.roundNo++;
 
+    // Refill suppliers
     let availableColors = state.colors;
-
     const filledSuppliers = state.suppliers.map(supplier => {
         const [toGet, toKeep] = getSupplierColors(availableColors);
         availableColors = toKeep
         return { ...supplier, colors: toGet }
     });
 
+    // Update starting player (either brand new one or from previous round based on "-1" taken)
     state.playerTurnIndex = state.firstPlayerId !== null
         ? state.players.findIndex(p => p.id === state.firstPlayerId)
         : 0;
 
+    // Clear player who should start next round
     state.firstPlayerId = null;
 
     state.colors = availableColors;

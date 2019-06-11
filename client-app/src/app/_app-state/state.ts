@@ -6,6 +6,7 @@ import { defaultColors } from './utils/default-colors';
 export interface AppState {
     gameId: string;
     gameStarted: boolean;
+    gameEnded: boolean;
     playerId: string;
     playerIndex: number;
     suppliers: Supplier[];
@@ -22,6 +23,7 @@ export interface AppState {
 export const defaultAppState: AppState = {
     gameId: '',
     gameStarted: false,
+    gameEnded: false,
     playerId: '',
     playerIndex: 0,
     suppliers: [],

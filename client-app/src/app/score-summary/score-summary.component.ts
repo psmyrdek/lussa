@@ -38,7 +38,7 @@ export class ScoreSummaryComponent {
 
   private updateTurnNotification(state: AppState) {
     if (state.playerTurnIndex === state.playerIndex && !this.turnNotificationFired) {
-      this.snackBar.open('Your turn!', null, { verticalPosition: 'top' });
+      this.snackBar.open('Twoja kolej!', null, { verticalPosition: 'top' });
       this.turnNotificationFired = true;
     }
 

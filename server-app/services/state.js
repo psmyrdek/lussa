@@ -1,6 +1,7 @@
 module.exports.state = () => Object.assign({}, {
     gameId: '',
     gameStarted: false,
+    gameEnded: false,
     suppliers: [],
     colors: [],
     rejectedSupplierColors: [],
