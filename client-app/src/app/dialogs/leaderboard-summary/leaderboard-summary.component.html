@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>Koniec gry!</h2>
+<mat-dialog-content>
+  <ul class="leaderboard">
+    <li class="leaderboard-row" *ngFor="let row of leaderboard; let i = index;" [ngClass]="'border--' + row.playerIndex">
+      <div class="leaderboard-index">{{ i + 1 }}</div>
+      <div class="flex flex-row flex-ai-center">
+        <span>{{row.playerId}}</span>
+        <div class="leaderboard-score" [ngClass]="'background--' + row.playerIndex">{{row.playerScore}}</div>
+      </div>
+    </li>
+  </ul>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!-- <button mat-raised-button color="primary" (click)="createNewGame()">
+    Nowa gra
+  </button> -->
+</mat-dialog-actions>

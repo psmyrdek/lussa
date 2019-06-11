@@ -31,14 +31,19 @@ function startNewRound(state) {
         state.gameStarted = true;
     }
 
+    // Increase round no indicator
+    state.roundNo++;
+
+    if (state.roundNo > 6) {
+        state.gameEnded = true;
+        return;
+    }
+
     // Refill available colors from broken ones when empty
     if (state.colors.length < state.suppliers.length * 4) {
         state.colors = [...state.colors, ...state.brokenColors];
         state.brokenColors = [];
     }
-
-    // Increase round no indicator
-    state.roundNo++;
 
     // Refill suppliers
     let availableColors = state.colors;
@@ -187,13 +192,13 @@ function gameStateReducer(state, action) {
                     .reduce((prev, current) => {
                         return prev + current.value;
                     }, 0);
-    
-        
+
+
                 const roundBonusColor = state.roundNo > 1 ? state.bonusColors[state.roundNo - 2] : null;
-                
-                if (roundBonusColor){
-                   const bonusInVariant = variant.fields.filter(f => f.color === roundBonusColor).length;
-                   player.score += bonusInVariant;
+
+                if (roundBonusColor) {
+                    const bonusInVariant = variant.fields.filter(f => f.color === roundBonusColor).length;
+                    player.score += bonusInVariant;
                 }
             }
 

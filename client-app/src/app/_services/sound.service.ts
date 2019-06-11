@@ -12,7 +12,8 @@ export class SoundService {
         this.sounds = {
             fillColumn: { play: () => {} },
             take: { play: () => {} },
-            startGame: { play: () => {} }
+            startGame: { play: () => {} },
+            endGame: { play: () => {} }
         }
     }
 
@@ -25,7 +26,10 @@ export class SoundService {
         });
         this.sounds.startGame = new Howl({
             src: [this.mapSrc('start.mp3')]
-        })
+        });
+        this.sounds.endGame = new Howl({
+            src: [this.mapSrc('end.mp3')]
+        });
     }
 
     play(action: Action) {
@@ -41,6 +45,9 @@ export class SoundService {
                 break;
             case GameActionTypes.GameStarted:
                 this.sounds.startGame.play();
+                break;
+            case GameActionTypes.GameEnded:
+                this.sounds.endGame.play();
                 break;
             default:
                 break;

@@ -4,24 +4,9 @@
     justify-content: space-between;
     align-items: center;
     background: #ffffff;
-    border-top: 3px solid #949494;
+    border-width: 3px;
+    border-style: solid;
     box-shadow: 0 2px 4px rgba(0,0,0,0.7);
     padding: 5px;
     margin-bottom: 10px;
-}
-
-.topbar-player-0 {
-    border-color: #40c1ec;
-}
-
-.topbar-player-1 {
-    border-color: #ec4040;
-}
-
-.topbar-player-2 {
-    border-color: #60e252;
-}
-
-.topbar-player-3 {
-    border-color: #b688e4;
 }

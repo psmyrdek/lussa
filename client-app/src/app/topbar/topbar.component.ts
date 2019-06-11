@@ -29,7 +29,7 @@ export class TopbarComponent implements OnInit {
 
   updatePlayerColor(state: AppState) {
     const index = state.players.findIndex(x => x.id === state.playerId)
-    this.playerColor = `topbar-player-${index.toString()}`
+    this.playerColor = `border--${index.toString()}`
   }
 
 }

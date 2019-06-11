@@ -8,7 +8,7 @@ import { GameActionTypes, AddPlayerAction, MarkReadinessAction, TakeFromSupplier
 import { GameAction } from 'src/app/_models/GameAction';
 
 @Injectable({ providedIn: 'root' })
-export class GameEffects {
+export class MessagingEffects {
 
     @Effect({ dispatch: false })
     addPlayer = this.actions$.pipe(

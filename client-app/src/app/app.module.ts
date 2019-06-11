@@ -22,7 +22,7 @@ import { BonusColorsComponent } from './bonus-colors/bonus-colors.component';
 import { ScoreSummaryComponent } from './score-summary/score-summary.component';
 import { HttpClientModule } from '@angular/common/http'
 import { EffectsModule } from '@ngrx/effects'
-import { GameEffects } from './_app-state/effects/game.effects';
+import { MessagingEffects } from './_app-state/effects/messaging.effects';
 import { PlayerNavComponent } from './player-nav/player-nav.component';
 import { SoundEffects } from './_app-state/effects/sound.effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +33,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { ForeignColumnWarningComponent } from './dialogs/foreign-column-warning/foreign-column-warning.component';
 import { JokerColumnQuestionComponent } from './dialogs/joker-column-question/joker-column-question.component';
 import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/preview-bonus-colors.component';
+import { UiEffects } from './_app-state/effects/ui.effects';
+import { LeaderboardSummaryComponent } from './dialogs/leaderboard-summary/leaderboard-summary.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/prev
     RejectedColorsWarningComponent,
     ForeignColumnWarningComponent,
     JokerColumnQuestionComponent,
-    PreviewBonusColorsComponent
+    PreviewBonusColorsComponent,
+    LeaderboardSummaryComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -64,7 +67,7 @@ import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/prev
     AppRouterModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer }),
-    EffectsModule.forRoot([GameEffects, SoundEffects]),
+    EffectsModule.forRoot([MessagingEffects, SoundEffects, UiEffects]),
     SocketIoModule.forRoot({
       url: '/',
       options: {
@@ -84,7 +87,8 @@ import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/prev
     RejectedColorsWarningComponent,
     ForeignColumnWarningComponent,
     JokerColumnQuestionComponent,
-    PreviewBonusColorsComponent
+    PreviewBonusColorsComponent,
+    LeaderboardSummaryComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -11,7 +11,8 @@ export enum GameActionTypes {
     TakeFromSupplier = 'takeFromSupplier',
     FillColumn = 'fillColumn',
     SkipTurn = 'skipTurn',
-    TakeFromRejectedColors = 'takeFromRejectedColors'
+    TakeFromRejectedColors = 'takeFromRejectedColors',
+    GameEnded = 'gameEnded'
 }
 
 export class AddPlayerAction implements Action {
@@ -58,4 +59,8 @@ export class SkipTurnAction implements Action {
 
 export class GameStartedAction implements Action {
     readonly type = GameActionTypes.GameStarted;
+}
+
+export class GameEndedAction implements Action {
+    readonly type = GameActionTypes.GameEnded;
 }

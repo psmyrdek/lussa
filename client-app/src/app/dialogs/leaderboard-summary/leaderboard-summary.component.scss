@@ -1,0 +1,26 @@
+.leaderboard {
+    margin: 0;
+    padding: 0;
+}
+
+.leaderboard-row {
+    list-style-type: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.leaderboard-index {
+    font-weight: 600;
+}
+
+.leaderboard-score {
+    margin-left: 3rem;
+    border-radius: 4px;
+    text-align: center;
+    width: 3rem;
+    color: white;
+    padding: 0.5rem 0;
+}
