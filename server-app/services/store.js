@@ -25,6 +25,11 @@ function initGame(gameId) {
 }
 
 function startNewRound(state) {
+
+    if (!state.gameStarted) {
+        state.gameStarted = true;
+    }
+
     state.roundNo++;
 
     let availableColors = state.colors;

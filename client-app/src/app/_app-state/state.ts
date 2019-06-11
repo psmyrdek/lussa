@@ -5,8 +5,9 @@ import { defaultColors } from './utils/default-colors';
 
 export interface AppState {
     gameId: string;
+    gameStarted: boolean;
     playerId: string;
-
+    playerIndex: number;
     suppliers: Supplier[];
     colors: Color[];
     rejectedSupplierColors: Color[];
@@ -20,8 +21,9 @@ export interface AppState {
 
 export const defaultAppState: AppState = {
     gameId: '',
+    gameStarted: false,
     playerId: '',
-    
+    playerIndex: 0,
     suppliers: [],
     colors: defaultColors,
     rejectedSupplierColors: [],
