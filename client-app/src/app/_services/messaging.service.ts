@@ -17,7 +17,7 @@ export class MessagingService {
     ) {
         this.gameSocket.on(GameActionTypes.UpdateGameState, (state: AppState) => {
 
-            if (!this.started && state.players.every(p => p.isReady)) {
+            if (!this.started && state.gameStarted) {
                 this.store.dispatch(new GameStartedAction());
                 this.started = true;
             }
