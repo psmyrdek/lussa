@@ -66,7 +66,11 @@ import { PreviewBonusColorsComponent } from './dialogs/preview-bonus-colors/prev
     EffectsModule.forRoot([GameEffects, SoundEffects]),
     SocketIoModule.forRoot({
       url: '/',
-      options: {}
+      options: {
+        transports: ['websocket'],
+        upgrade: false,
+        forceNew: true
+      }
     }),
     MatDialogModule,
     MatButtonModule
