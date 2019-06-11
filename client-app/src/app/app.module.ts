@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocketIoModule } from 'ngx-socket-io';
 import { AppComponent } from './app.component';
-import { PlayersContainerComponent } from './players/players-container/players-container.component';
+import { PlayersContainerComponent } from './players-container/players-container.component';
 import { SuppliersContainerComponent } from './suppliers/suppliers-container/suppliers-container.component';
 import { FieldContainerComponent } from './field/field-container/field-container.component';
 import { StageComponent } from './stage/stage.component';

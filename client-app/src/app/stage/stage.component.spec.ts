@@ -4,7 +4,7 @@ import { StageComponent } from './stage.component';
 import { SuppliersContainerComponent } from '../suppliers/suppliers-container/suppliers-container.component';
 import { RejectedColorsComponent } from '../suppliers/rejected-colors/rejected-colors.component';
 import { FieldContainerComponent } from '../field/field-container/field-container.component';
-import { PlayersContainerComponent } from '../players/players-container/players-container.component';
+import { PlayersContainerComponent } from '../players-container/players-container.component';
 import { SupplierComponent } from '../suppliers/supplier/supplier.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
