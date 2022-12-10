@@ -14,7 +14,7 @@
   "author": "psmyrdek",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "pino": "^5.12.6",
     "socket.io": "2.2.0",
     "uuid": "^3.3.2"
